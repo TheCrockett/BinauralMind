@@ -1,0 +1,557 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-30 13:25-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/gnaural.glade:35
+msgid "Gnaural Binaural Beat Sound Generator"
+msgstr ""
+
+#: src/gnaural.glade:46
+msgid "_File"
+msgstr ""
+
+#: src/gnaural.glade:63
+msgid "Open a gnaural file"
+msgstr ""
+
+#: src/gnaural.glade:73
+msgid "Open Recent"
+msgstr ""
+
+#: src/gnaural.glade:80
+msgid "Open from an installed directory of preset files"
+msgstr ""
+
+#: src/gnaural.glade:81
+msgid "Open From Preset _Library"
+msgstr ""
+
+#: src/gnaural.glade:90
+msgid "Open a gnaural file and add the contents to current data"
+msgstr ""
+
+#: src/gnaural.glade:91
+msgid "Open Mer_ge"
+msgstr ""
+
+#: src/gnaural.glade:140
+msgid "Create an audio file for CD or MP3 player"
+msgstr ""
+
+#: src/gnaural.glade:141
+msgid "Export _Audio To File"
+msgstr ""
+
+#: src/gnaural.glade:155
+msgid "This will put a basic meditation file in Gnaural's home directory"
+msgstr ""
+
+#: src/gnaural.glade:156
+msgid "Restore _default file and settings"
+msgstr ""
+
+#: src/gnaural.glade:183
+msgid "_Edit"
+msgstr ""
+
+#: src/gnaural.glade:191 src/gnaural.glade:201
+msgid "Reverts to previous state"
+msgstr ""
+
+#: src/gnaural.glade:210
+msgid "_DataPoints"
+msgstr ""
+
+#: src/gnaural.glade:218
+msgid "Copies then deletes selected datapoints"
+msgstr ""
+
+#: src/gnaural.glade:228
+msgid "Copies selected datapoints"
+msgstr ""
+
+#: src/gnaural.glade:247
+msgid "Pastes at the end of the schedule"
+msgstr ""
+
+#: src/gnaural.glade:248
+msgid "Paste at _End   Shift+V"
+msgstr ""
+
+#: src/gnaural.glade:257
+msgid "Deletes selected datapoints, adding their durations to left-neighbor"
+msgstr ""
+
+#: src/gnaural.glade:267
+msgid "Deletes selected datapoints and also the durations they held"
+msgstr ""
+
+#: src/gnaural.glade:268
+msgid "Delete Ti_me  Shift+delete"
+msgstr ""
+
+#: src/gnaural.glade:282
+msgid "Clears all datapoints"
+msgstr ""
+
+#: src/gnaural.glade:291
+msgid "Dialog box to manually enter values for all selected datapoints"
+msgstr ""
+
+#: src/gnaural.glade:293 src/gnaural.glade:331
+msgid "_Properties"
+msgstr ""
+
+#: src/gnaural.glade:305
+msgid "_Voice"
+msgstr ""
+
+#: src/gnaural.glade:312
+msgid "Adds a new voice"
+msgstr ""
+
+#: src/gnaural.glade:313
+msgid "_Add        Ctrl+j"
+msgstr ""
+
+#: src/gnaural.glade:321
+msgid "Deletes currently selected voice"
+msgstr ""
+
+#: src/gnaural.glade:322
+msgid "_Delete    Ctrl+d"
+msgstr ""
+
+#: src/gnaural.glade:349
+msgid "Applies current graph to sound engine"
+msgstr ""
+
+#: src/gnaural.glade:364
+msgid "Edit the overal schedule information"
+msgstr ""
+
+#: src/gnaural.glade:365
+msgid "Schedule Info"
+msgstr ""
+
+#: src/gnaural.glade:373
+msgid "DataPoint Size"
+msgstr ""
+
+#: src/gnaural.glade:381
+msgid "Font"
+msgstr ""
+
+#: src/gnaural.glade:394
+msgid "Assorted algorithms for selecting datapoints"
+msgstr ""
+
+#: src/gnaural.glade:395
+msgid "_Select"
+msgstr ""
+
+#: src/gnaural.glade:405
+msgid "Select all visible datapoints in schedule"
+msgstr ""
+
+#: src/gnaural.glade:406
+msgid "_All                           Ctrl+a"
+msgstr ""
+
+#: src/gnaural.glade:415
+msgid "Deselect all visible datapoints in schedule"
+msgstr ""
+
+#: src/gnaural.glade:416
+msgid "_None                      Shift+A"
+msgstr ""
+
+#: src/gnaural.glade:425
+msgid "Invert selection of all visible datapoints in schedule"
+msgstr ""
+
+#: src/gnaural.glade:426
+msgid "_Invert                      Ctrl+i"
+msgstr ""
+
+#: src/gnaural.glade:435
+msgid "Selects first datapoint in all visible voices"
+msgstr ""
+
+#: src/gnaural.glade:436
+msgid "_First                       Shift+U"
+msgstr ""
+
+#: src/gnaural.glade:445
+msgid "Selects last datapoint in all visible voices"
+msgstr ""
+
+#: src/gnaural.glade:446
+msgid "_Last                        Ctrl+u"
+msgstr ""
+
+#: src/gnaural.glade:455
+msgid "Selects visible DPs at given interval"
+msgstr ""
+
+#: src/gnaural.glade:456
+msgid "By In_terval              Ctrl+k"
+msgstr ""
+
+#: src/gnaural.glade:465
+msgid "Selects visible DPs above or below given duration"
+msgstr ""
+
+#: src/gnaural.glade:466
+msgid "By _Duration"
+msgstr ""
+
+#: src/gnaural.glade:475
+msgid "Select visible DPs adjacent to currently selected DPs"
+msgstr ""
+
+#: src/gnaural.glade:476
+msgid "By Nei_ghbor           Ctrl+m"
+msgstr ""
+
+#: src/gnaural.glade:485
+msgid "Selects all visible DPs with a given X,Y proximity to each other"
+msgstr ""
+
+#: src/gnaural.glade:486
+msgid "By _Proximity (All)"
+msgstr ""
+
+#: src/gnaural.glade:495
+msgid "Selects all DPs around a selected DP"
+msgstr ""
+
+#: src/gnaural.glade:496
+msgid "By Pro_ximity (single point)"
+msgstr ""
+
+#: src/gnaural.glade:505
+msgid "Voice Datapoint Selections"
+msgstr ""
+
+#: src/gnaural.glade:515
+msgid "Select all datapoints in voice"
+msgstr ""
+
+#: src/gnaural.glade:516
+msgid "_All               Ctrl+e"
+msgstr ""
+
+#: src/gnaural.glade:525
+msgid "Deselect all datapoints in voice"
+msgstr ""
+
+#: src/gnaural.glade:526
+msgid "_None          Shift+E"
+msgstr ""
+
+#: src/gnaural.glade:535
+msgid "Inverts the selection of datapoints in selected voice"
+msgstr ""
+
+#: src/gnaural.glade:536
+msgid "_Invert         Shift+I"
+msgstr ""
+
+#: src/gnaural.glade:552
+msgid "_View"
+msgstr ""
+
+#: src/gnaural.glade:559
+msgid "Show base frequency along Y axis"
+msgstr ""
+
+#: src/gnaural.glade:560
+msgid "Frequency"
+msgstr ""
+
+#: src/gnaural.glade:568
+msgid "Show left-right stereo mix using Y axis"
+msgstr ""
+
+#: src/gnaural.glade:569
+msgid "Stereo"
+msgstr ""
+
+#: src/gnaural.glade:577
+msgid "Show volume using Y axis"
+msgstr ""
+
+#: src/gnaural.glade:578 src/gnaural.glade:1509
+msgid "Volume"
+msgstr ""
+
+#: src/gnaural.glade:586
+msgid "Show beat frequency using Y axis"
+msgstr ""
+
+#: src/gnaural.glade:587
+msgid "Beat"
+msgstr ""
+
+#: src/gnaural.glade:600
+msgid "Assorted tools for processing datapoints"
+msgstr ""
+
+#: src/gnaural.glade:601
+msgid "_Tools"
+msgstr ""
+
+#: src/gnaural.glade:611
+msgid "Scale the Y values of selected DPs"
+msgstr ""
+
+#: src/gnaural.glade:612
+msgid "Scale Y                             Ctrl+g"
+msgstr ""
+
+#: src/gnaural.glade:621
+msgid "Duplicates the selected voice"
+msgstr ""
+
+#: src/gnaural.glade:622
+msgid "Duplicate Selected Voice  Ctrl+b"
+msgstr ""
+
+#: src/gnaural.glade:631
+msgid "Reverses x axis of selected voice"
+msgstr ""
+
+#: src/gnaural.glade:632
+msgid "Reverse Voice                   Ctrl+r"
+msgstr ""
+
+#: src/gnaural.glade:641
+msgid ""
+"For each voice, finds the first and last selected datapoints and aligns all "
+"other selected points between them"
+msgstr ""
+
+#: src/gnaural.glade:642
+msgid "Align DataPoints               Ctrl+l"
+msgstr ""
+
+#: src/gnaural.glade:651
+msgid "Truncates (or grows) all voices to a set time"
+msgstr ""
+
+#: src/gnaural.glade:652
+msgid "Truncate Schedule"
+msgstr ""
+
+#: src/gnaural.glade:661
+msgid "Scale the duration of selected DPs"
+msgstr ""
+
+#: src/gnaural.glade:662
+msgid "Scale Durations  "
+msgstr ""
+
+#: src/gnaural.glade:671
+msgid "Injects jitter on Y axis of selected data points"
+msgstr ""
+
+#: src/gnaural.glade:672
+msgid "Randomize Y"
+msgstr ""
+
+#: src/gnaural.glade:680
+msgid "Adds to Y values of selected datapoints"
+msgstr ""
+
+#: src/gnaural.glade:681
+msgid "Add to Y"
+msgstr ""
+
+#: src/gnaural.glade:690
+msgid "Injects jitter to durations of selected data points"
+msgstr ""
+
+#: src/gnaural.glade:691
+msgid "Randomize Durations"
+msgstr ""
+
+#: src/gnaural.glade:699
+msgid "Adds to the durations of selected datapoints"
+msgstr ""
+
+#: src/gnaural.glade:700
+msgid "Add to Durations"
+msgstr ""
+
+#: src/gnaural.glade:709
+msgid "Inverts selected DPs in the graph"
+msgstr ""
+
+#: src/gnaural.glade:710
+msgid "Invert Y"
+msgstr ""
+
+#: src/gnaural.glade:719
+msgid "Duplicate entire schedule"
+msgstr ""
+
+#: src/gnaural.glade:720
+msgid "Duplicate All Voices"
+msgstr ""
+
+#: src/gnaural.glade:729
+msgid "Rounds specified parameters"
+msgstr ""
+
+#: src/gnaural.glade:730
+msgid "Round Datapoints"
+msgstr ""
+
+#: src/gnaural.glade:743
+msgid "Controls for Gnauralnet"
+msgstr ""
+
+#: src/gnaural.glade:744
+msgid "_GnauralNet"
+msgstr ""
+
+#: src/gnaural.glade:754
+msgid ""
+"You must start Gnauralnet in order to be in contact with another Gnaural"
+msgstr ""
+
+#: src/gnaural.glade:755
+msgid "_Start Gnauralnet"
+msgstr ""
+
+#: src/gnaural.glade:764
+msgid "Enter the IP address and port of the remote Gnaural to contact"
+msgstr ""
+
+#: src/gnaural.glade:765
+msgid "_Connect To Another Gnaural"
+msgstr ""
+
+#: src/gnaural.glade:773
+msgid "Use to sync Gnaural with an external stimulus"
+msgstr ""
+
+#: src/gnaural.glade:775
+msgid "Send phase _pulses to external app"
+msgstr ""
+
+#: src/gnaural.glade:783
+msgid "Displays current connections info"
+msgstr ""
+
+#: src/gnaural.glade:784
+msgid "Show _Info"
+msgstr ""
+
+#: src/gnaural.glade:796
+msgid "_Help"
+msgstr ""
+
+#: src/gnaural.glade:847
+msgid "Status:"
+msgstr ""
+
+#: src/gnaural.glade:859
+msgid "Total Runtime:"
+msgstr ""
+
+#: src/gnaural.glade:871
+msgid "Progress:"
+msgstr ""
+
+#: src/gnaural.glade:887
+msgid "Times to Repeat (0 for infinite):"
+msgstr ""
+
+#: src/gnaural.glade:917
+msgid "<i>Status:</i>"
+msgstr ""
+
+#: src/gnaural.glade:941
+msgid "File:"
+msgstr ""
+
+#: src/gnaural.glade:955
+msgid "Title:"
+msgstr ""
+
+#: src/gnaural.glade:970
+msgid "Description:"
+msgstr ""
+
+#: src/gnaural.glade:985
+msgid "Author:"
+msgstr ""
+
+#: src/gnaural.glade:1001
+msgid "<i>Schedule Info:</i>"
+msgstr ""
+
+#: src/gnaural.glade:1059
+msgid "<small>Volume</small>"
+msgstr ""
+
+#: src/gnaural.glade:1094
+msgid "<small>Balance</small>"
+msgstr ""
+
+#: src/gnaural.glade:1172
+msgid "Swap Stereo"
+msgstr ""
+
+#: src/gnaural.glade:1213
+msgid "Output Mono"
+msgstr ""
+
+#: src/gnaural.glade:1242
+msgid "<i>Audio Output</i>"
+msgstr ""
+
+#: src/gnaural.glade:1300
+msgid "Scale"
+msgstr ""
+
+#: src/gnaural.glade:1328
+msgid "Magnetic Pointer"
+msgstr ""
+
+#: src/gnaural.glade:1347
+msgid "<i>Move Selected DataPoints</i>"
+msgstr ""
+
+#: src/gnaural.glade:1475
+msgid "Base Freq."
+msgstr ""
+
+#: src/gnaural.glade:1492
+msgid "Beat Freq."
+msgstr ""
+
+#: src/gnaural.glade:1526
+msgid "Stereo Bal."
+msgstr ""
+
+#: src/gnaural.glade:1546
+msgid "<i>Graph View:</i>"
+msgstr ""

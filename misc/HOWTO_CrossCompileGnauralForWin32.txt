@@ -1,0 +1,190 @@
+HOWTO: Cross-Compile Gnaural for Win32 from Ubuntu [20101006]
+
+[if all the supporting stuff was already installed previously, skip "SETUP" and goto "COMPILING"]
+
+SETUP:
+- Install mingw32 via synaptic
+
+- get all the GTK dev libraries from here: 
+http://www.gtk.org/download-windows.html
+That would include GLib GTK+ Pango ATK  cairo, but most can be downloaded in an "All-in-one bundle" from
+that site if you look around. Not everythign is in that bundle, but can be found at that same site.
+
+- as root, extract all the GTK stuff them in the MinGW libs area. On Ubuntu, 
+this is the directory (as installed by mingw32):
+ /usr/i586-mingw32msvc
+Unzip like this from the directory you downloaded to:
+ sudo unzip -d/usr/i586-mingw32msvc/ gtk+-bundle_2.22.1-20101227_win32.zip
+ sudo unzip -d/usr/i586-mingw32msvc/ glib-dev_2.26.1-1_win32.zip
+ sudo unzip -d/usr/i586-mingw32msvc/ pango-dev_1.28.3-1_win32.zip
+ sudo unzip -d/usr/i586-mingw32msvc/ cairo-dev_1.10.2-1_win32.zip
+ sudo unzip -d/usr/i586-mingw32msvc/ fontconfig-dev_2.8.0-2_win32.zip
+ sudo unzip -d/usr/i586-mingw32msvc/ freetype-dev_2.4.4-1_win32.zip
+ sudo unzip -d/usr/i586-mingw32msvc/ libpng-dev_1.4.3-1_win32.zip
+ sudo unzip -d/usr/i586-mingw32msvc/ atk-dev_1.32.0-1_win32.zip
+ sudo unzip -d/usr/i586-mingw32msvc/ gettext-runtime-dev_0.18.1.1-2_win32.zip
+ 
+-Install the dev stuff for glade, portaudio, sndfile, xml2 too, made available in the File download section 
+on Gnaural's Sourceforge site, under Gnaural_old->Gnaural-dev->gnaural-dev-1.0.20110525->gnaural_DLLs.tar.gz. 
+I just used sudo nautilus to put it in that same directory.
+
+- make all directories uog+rx:
+ sudo chmod -R uog+rx /usr/i586-mingw32msvc/*
+
+- To get the pkg-config files you just downloaded to work properly (and any time you add new pkg-conf.pc 
+files), run this script as root (taken from http://live.gnome.org/GTK%2B/Win32/Apps):
+
+ cd /usr/i586-mingw32msvc
+ sed -i 's|^prefix=.*$|prefix=/usr/i586-mingw32msvc|g' lib/pkgconfig/*.pc
+ cd ./lib
+ for f in *.lib; do mv $f lib${f%%lib}a; done
+
+- To get pkg-config itself to work properly you must create a little executable named 
+"i586-mingw32msvc-pkg-config" and put it down in /usr/bin or some such where everyone 
+can get it. I did it like this:
+
+ nano /usr/bin/i586-mingw32msvc-pkg-config
+
+and then added this from http://live.gnome.org/GTK%2B/Win32/Apps):
+
+#!/bin/sh
+
+PKG_CONFIG_LIBDIR=/usr/i586-mingw32msvc/lib/pkgconfig \
+PKG_CONFIG_PATH=/usr/i586-mingw32msvc/lib/pkgconfig pkg-config $*
+
+
+Of course, remember to make it executable:
+ sudo uog+x /usr/bin/i586-mingw32msvc-pkg-config
+
+-before compiling, be sure to put this (it will save you days of wondering why you can't compile):
+ export PKG_CONFIG_PATH=/usr/i586-mingw32msvc/lib/pkgconfig
+
+======================
+
+COMPILING:
+
+ make clean
+ export PKG_CONFIG_PATH=/usr/i586-mingw32msvc/lib/pkgconfig
+ ./configure --host=i586-mingw32msvc --target=i586-mingw32msvc --build=`./config.guess`
+ make clean
+ make
+
+That's it. If you want to bundle it, see accompanying HOWTO:
+gnaural/misc/HOWTO_BuildWindowsInstaller.txt
+And if you want to also debug gnaural.exe in Ubuntu, be sure Wine 
+is installed, then put all these DLLs down in src next to gnaural.exe:
+
+ gnaural/src/libportaudio-2.dll
+ gnaural/src/libsndfile-1.dll
+ gnaural/src/libxml2.dll
+ gnaural/src/freetype6.dll
+ gnaural/src/iconv.dll
+ gnaural/src/intl.dll
+ gnaural/src/jpeg62.dll
+ gnaural/src/libatk-1.0-0.dll
+ gnaural/src/libcairo-2.dll
+ gnaural/src/libexpat-1.dll
+ gnaural/src/libfontconfig-1.dll
+ gnaural/src/libgailutil-18.dll
+ gnaural/src/libgdk_pixbuf-2.0-0.dll
+ gnaural/src/libgdk-win32-2.0-0.dll
+ gnaural/src/libgio-2.0-0.dll
+ gnaural/src/libglib-2.0-0.dll
+ gnaural/src/libgmodule-2.0-0.dll
+ gnaural/src/libgobject-2.0-0.dll
+ gnaural/src/libgthread-2.0-0.dll
+ gnaural/src/libgtk-win32-2.0-0.dll
+ gnaural/src/libjpeg-7.dll
+ gnaural/src/libpango-1.0-0.dll
+ gnaural/src/libpangocairo-1.0-0.dll
+ gnaural/src/libpangoft2-1.0-0.dll
+ gnaural/src/libpangowin32-1.0-0.dll
+ gnaural/src/libpng12.dll
+ gnaural/src/libpng12-0.dll
+ gnaural/src/libpng14-14.dll
+ gnaural/src/libtiff3.dll
+ gnaural/src/libtiff-3.dll
+
+NOTE: the first three [libportaudio-2.dll, libsndfile-1.dll, libxml2.dll]
+are the ones that DON'T come with the standard GTK+ installation; the 
+rest were taken from the GTK+ Windows port
+
+Have fun!
+
+
+
+
+
+
+
+
+================Original ones from 2006 below=======================
+ HOWTO: Cross-Compile Gnaural for Win32 from Debian
+To cross compile Gnaural on Debian, follow these steps:
+
+    * Remove automake1.4 if you have it (that is currently Debian's default automake, but you'll need newer):
+
+ apt-get remove automake1.4
+
+    * Get the standard packages required to compile gnaural:
+
+ apt-get install autoconf autotools-dev automake1.9 libgtk2.0-dev libglade2-dev libportaudio0
+
+    * Get the MinGW32 cross-compiler tools:
+
+ apt-get install mingw32 mingw32-binutils mingw32-runtime
+
+    * Get Tor Lillqvist's GTK+ Win32 development libs -- download everything with "-dev" in the name from here: 
+
+ http://www.gimp.org/~tml/gimp/win32/downloads.html
+
+    * Unzip all of Tor's GTK+ dev-libs in to a folder called "gtk_win32-dev"
+
+    * Download libglade's Win32 development files (headers and libs) from here:
+
+http://gladewin32.sourceforge.net/modules/wfdownloads/visit.php?cid=3&lid=34
+
+    * Download and unzip Gnaural's tarball, let's say it's version gnaural-0.x.xxxxxxxx.tar.gz for this example, type:
+
+tar -xzf gnaural-0.x.xxxxxxxx.tar.gz
+
+    * cd to the src directory and edit the file src/Makefile.am to point the variable "mingwdir" to the gtk_win32-dev folder you created. After your edit, it should look something like this:
+
+   mingwdir = ../../../../gtk_win32-dev
+
+    * In project root directory, type:
+
+  ./autogen.sh --host=i586-mingw32msvc --target=i586-mingw32msvc --build=`./config.guess`
+
+    * And finally, type:
+
+ make
+
+    * If all went well, you now have a Win32 executable named "gnaural.exe" in your src directory. You will probably want to strip it:
+
+i586-mingw32msvc-strip src/gnaural.exe
+
+    * Be sure you have downloaded and put in the executable's directory both Gnaural.glade and the two Windows DLLs for libglade and it's dependency 
+
+libxml2 (see http://www.zlatkovic.com/libxml.en.html and http://gladewin32.sourceforge.net/modules/wfdownloads/visit.php?cid=3&lid=33 for the DLLs)
+
+    * Then to test it:
+
+ wine src/gnaural.exe -d 
+
+    * Assuming you had WINE and the GTK+2 Win32 Runtime libs installed (see below if not), the program started. And also looked beyond awful, because, ironically, I still haven't found a version of WINE or GTK that lets's GTK apps them look right in WINE (although some of the older versions of GTK ones at least allowed the app to be recognizable). But main thing is, if it runs at all without all the "could not find signal handler" errors, it will look fabulous in real Windows.
+
+NOTE: to do the last step (testing the executable), you will also need to have WINE installed, and also (installed via WINE) the standard Win32 GTK+ runtime libs. To get WINE:
+
+ http://winehq.org/
+
+To get the Win32 GTK+ runtime libs:
+
+ http://prdownloads.sourceforge.net/gaim/gtk-runtime-2.6.9-rev-a.exe?download
+
+Special thanks to Tor Lillqvist and the other developers responsible for porting GTK+ to Windows, to the developers of MinGW for making cross-compiling Win32 executables from within Linux easy, to the developers of Glade, and also to Allin Cottrell for writing the helpful document "Building GTK apps for MS Windows on Linux", found here:
+
+ http://ricardo.ecn.wfu.edu/~cottrell/cross-gtk/
+
+
+Creation date: 2005-12-04 15:46 Update date: 2005-12-08 23:15 

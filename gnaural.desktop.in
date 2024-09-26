@@ -1,0 +1,23 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+TryExec=gnaural
+Exec=gnaural %F
+Icon=@PACKAGE_DATA_DIR_USR_SHARE@/@PACKAGE@/pixmaps/gnaural-icon.png
+Terminal=false
+Categories=AudioVideo;AudioVideoEditing;Audio;Network;GTK;GNOME;Application;
+Name=Gnaural
+GenericName=Audio binaural beat editor/generator
+Comment=Audio Binaural Beat Editor/Generator
+Name[en_CA]=Gnaural
+Name[en_GB]=Gnaural
+Name[fr]=Gnaural
+GenericName=Binaural Beat Generator
+GenericName[en_CA]=Binaural Beat Generator
+GenericName[en_GB]=Binaural Beat Generator
+GenericName[fr]=Générateur de battements binauraux
+Comment[en_CA]=An Audio Binaural Beat Generator
+Comment[en_GB]=An Audio Binaural Beat Generator
+Comment[fr]=Générateur de battements binauraux
+

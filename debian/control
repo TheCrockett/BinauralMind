@@ -1,0 +1,33 @@
+Source: gnaural
+Section: sound
+Priority: extra
+Maintainer: Bret Logan <gnaural@users.sourceforge.net>
+Build-Depends: debhelper (>= 7), autotools-dev
+Standards-Version: 3.8.3
+Homepage: http://gnaural.sourceforge.net/
+
+Package: gnaural
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Multi-voiced programmable binaural beat audio generator
+ A programmable audio generator intended as an aural aid to meditation,
+ implementing the binaural beat principle as described in Gerald Oster's
+ Oct. 1973 Scientific American article "Auditory Beats in the Brain." 
+ .
+ Binaural beats are an auditory phenomenon created when tones of slightly
+ different frequency are perceived independently by each ear. Stereo 
+ headphones  are thus required when using Gnaural in order to isolate the 
+ tones.
+ .
+ A side effect of binaural beats is known as "Frequency Following Response",
+ or "brainwave entrainment." It is this effect that Gnaural uses in order to 
+ facilitate meditative states.
+ .
+ Gnaural features include the ability to:
+ - Edit your own sessions using a GUI
+ - Export to many common audio file formats
+ - Mix binaural beats with external audio files
+ - Synchronize meditation sessions over the internet
+ - Communicate with other applications via TCP/IP
+
+

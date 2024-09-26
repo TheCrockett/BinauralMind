@@ -1,0 +1,329 @@
+Building Gnaural on MacOSX Notes [updated 2010-11-05]:
+
+20100423:
+Lost my main MacOSX notes. But best as i can resurrect, this is really all you need to do once you've followed the further-down instructs on building the GTK+ libs and installing the bundler, just get the CVS code and compile like this:
+
+1) open a Terminal.app window, paste:
+
+ cd src
+ cvs -z3 -d:pserver:anonymous@gnaural.cvs.sourceforge.net:/cvsroot/gnaural co -P gnaural
+ jhbuild shell
+ cd gnaural
+ ./configure --prefix ~/gtk/inst --libdir '${exec_prefix}/lib'  --disable-static --disable-gtk-doc --disable-docs --disable-scrollkeeper --without-emacs --disable-java --disable-native-java --disable-libasprintf --disable-csharp
+ make
+ make install
+
+2) Now bundle it and put the glade file in the right place in the bundle:
+ unzip misc/gnaural_MacOSX-bundler.zip
+ cd gnaural_MacOSX-bundler
+ ige-mac-bundler gnaural.bundle
+ cp ~/Desktop/Gnaural.app/Contents/Resources/share/gnaural/gnaural.glade ~/Desktop/Gnaural.app/Contents/MacOS/
+
+That'll put a brand spanking new "Gnaural.app" file on your desktop.
+
+3) BUT YOU AREN'T DONE. Why? Because while this bundle works on your Mac, it won't run on others. Here's the problem: Mac loves absolute paths being embedded in libraries and executables such that trying to bundle things PORTABLY actually approaches nightmarishness. But i came up with a hack that will indeed "de-absolute" all the lib paths in your Gnaural Bundle, called "ChangeInternalPaths.sh" and included down in the misc/ directory. Run it in a terminal from there; (for more info on this problem, see http://lapcatsoftware.com/blog/2007/08/11/embedding-frameworks-in-loadable-bundles/)
+Btw, to get in your bundle, remember that it is really just a folder called "Gnaural.app" on your desktop; run ChangeInternalPaths.sh from just inside it (it's "root"). Putting all that together, from where you were in the last step do this:
+
+ ../misc/ChangeInternalPaths.sh
+
+4) Nowadays for distribution, I just ZIP the Gnaural.app in to it's final distributable form, using Mac's internal compress feature available by right-clicking on the file (which is basically "zip", but apparently Mac changed it a bit). If you really want to create a DMG (i don't see any reason to), open the Gnaural.app with Mac "Disk Utility" and figure it out from there.
+
+
+DONE.
+
+For convenience, here's everything in one fell swoop:
+
+ jhbuild shell
+ rm -R ~/Desktop/Gnaural.app
+ cd ~/src
+ cvs -z3 -d:pserver:anonymous@gnaural.cvs.sourceforge.net:/cvsroot/gnaural co -P gnaural
+ cd gnaural
+ ./configure --prefix ~/gtk/inst --libdir '${exec_prefix}/lib'  --disable-static --disable-gtk-doc --disable-docs --disable-scrollkeeper --without-emacs --disable-java --disable-native-java --disable-libasprintf --disable-csharp
+ make
+ make install
+ unzip misc/gnaural_MacOSX-bundler.zip
+ cd gnaural_MacOSX-bundler
+ ige-mac-bundler gnaural.bundle
+ cp ~/Desktop/Gnaural.app/Contents/Resources/share/gnaural/gnaural.glade ~/Desktop/Gnaural.app/Contents/MacOS/
+ ../misc/ChangeInternalPaths.sh
+
+
+
+============================
+Notes: 
+-your best friend in this whole process is:
+ otool -L [executable/library name]
+This will tell you EXACTLY what it's dependencies are, and can save you hours of time trying to figure out why something isn't working.
+
+-This will let you delink the executable in the src/executable to trick it to look in ../Resources/lib/ , which is a great trick to test the libs:
+
+ORIGLIBDEFAULTDIR=~/gtk/inst/lib
+LIBDEFAULTDIR=~/Desktop/Gnaural.app/Contents/Resources/lib
+SODEFAULTDIR=~/Desktop/Gnaural.app/Contents/Resources/lib/gtk-2.0/2.10.0/loaders
+EXEDEFAULTDIR=~/src/gnaural/src
+
+#go in to libs directory again:
+cd $LIBDEFAULTDIR
+
+#finally, fix the gnaural executable:
+  for file1 in *.dylib
+   do
+    echo "Resetting internal paths in gnaural from" $ORIGLIBDEFAULTDIR/$file1 "to @executable_path/../Resources/lib/"$file1
+  # this is what you do for executables:
+    install_name_tool -change $ORIGLIBDEFAULTDIR/$file1 @executable_path/../Resources/lib/$file1 $EXEDEFAULTDIR/gnaural
+   done
+
+
+==================
+20100422:
+To build the GTK+ libs:
+1) go here:
+http://sourceforge.net/apps/trac/gtk-osx/wiki/Build
+If those instructions die, basically they want you to download this:
+http://downloads.sourceforge.net/sourceforge/gtk-osx/gtk-osx-build-setup.sh
+then run it (i had to change it to executable, btw). This installs jhbuild down in ~/.local/bin/jhbuild shell
+if you want to add that directory to the path, btw, pico ~/.bash_profile and put this in there
+
+export PATH="$PATH:~/.local/bin"
+
+2) paste this:
+
+ jhbuild shell
+ export PATH=$PREFIX/bin:$PATH
+ cd ~
+ jhbuild bootstrap
+ jhbuild build meta-gtk-osx-bootstrap
+ jhbuild build meta-gtk-osx-core
+ jhbuild build
+ jhbuild build meta-gtk-osx-themes
+ jhbuild buildone libglade
+
+[NOTE: it is NOT clear that i should launch jhbuild shell for this process, but the docs aren't clear]
+
+3) get the bundler from here:
+ http://downloads.sourceforge.net/sourceforge/gtk-osx/ige-mac-bundler-0.5.3.tar.gz
+then paste SOMETHING like this (Mac, in its usual need to pretend to be helpful, f's with the filename, so ad-lib it):
+ mv ~/Downloads/ige-mac-bundler-0.5.3.tar.gz ~/src
+ cd ~/src
+ tar zxvf ige-mac-bundler-0.5.3.tar.gz
+ cd ige-mac-bundler-0.5.3
+ make install
+
+
+4) get portaudio and libsndfile:
+You can either just grab my precompiled version in here:
+http://sourceforge.net/projects/gnaural/files/Old_Releases/Gnaural-dev/gnaural-dev-1.0.20090109/MacOSX_GTK_leopard.zip/download
+OR just download the source for both then run this line on each:
+ ./configure --prefix ~/gtk/inst --libdir '${exec_prefix}/lib'  --disable-static --disable-gtk-doc --disable-docs --disable-scrollkeeper --without-emacs --disable-java --disable-native-java --disable-libasprintf --disable-csharp
+ make 
+ make install
+
+5) to do Libsndfile justice, you really might want to get FLAC, OGG, Vorbis; the versions i built are best from here:
+ http://xiph.org/downloads/
+All worked with the usual ./configure line EXCEPT flac, which is apparently a piece of $#!T in terms of portability. I finally got it to compile by by turning off assembly optimizations, by adding this to the end of the usual configure line (running in jhbuild shell, of course):
+ -disable-asm-optimizations --with-lib-preference=local,system
+
+(Originally, i put this whole line in there:
+ ./configure --prefix ~/gtk/inst --libdir '${exec_prefix}/lib'  --disable-static --disable-gtk-doc --disable-docs --disable-scrollkeeper --without-emacs --disable-java --disable-native-java --disable-libasprintf --disable-csharp -disable-asm-optimizations --enable-static=yes       --enable-unicode=no --enable-debug=yes --with-lib-preference=local,system
+but much of that line is either unnecessary or contradictory)
+
+
+[END OF CURRENT STUFF]
+
+
+=======================================================
+20081209:
+- There seem to be conflicts between the Framework (system-level) GTK+ installation and the manual built (jbuild) local installation; having both can do nasty stuff, so when building Gnaural and all associated libs (portaudio, sndfile, libglade) for bundle distribution (e.g., with all GTK+ libs self-contained in the bundle so user doesn't have to install them), be sure to make any installed GTK+ Frameworks inaccessible. I just did this:
+drwxrwxr-x  6 root  admin  204 Nov 12 11:02 Cairo.framework_BAK
+drwxrwxr-x  6 root  admin  204 Nov 12 11:02 GLib.framework_BAK
+drwxrwxr-x  7 root  admin  238 Nov 12 11:02 Gtk.framework_BAK
+
+- To make the local GTK+ libs, follow these instructions:
+http://developer.imendio.com/projects/gtk-macosx/build-instructions [now http://gtk-osx.sourceforge.net/]
+Here's a cut-and-past version:
+
+First, get the starting script:
+ http://people.imendio.com/richard/gtk-osx-build/gtk-osx-build-setup.sh
+
+Then issue these commands and go do something for half an hour:
+
+ sh gtk-osx-build-setup.sh
+ jhbuild bootstrap
+ jhbuild build meta-gtk-osx-bootstrap
+ #build the software: the GTK+ core modules:
+ jhbuild build
+ jhbuild build meta-gtk-osx-themes
+ jhbuild buildone libglade
+
+NOTE: I've try with do this with "JHB=fw-10.4 " in front of each jhbuild line to maintain backward compatibility, but libglade won't build, nor a bunch of osx themes. They complain about no glib-gettext, mostly.
+ 
+- Once all that is done, whenever you want to compile code or run stuff to go in bundles, type this to start a shell for manual building or running GTK+ applications:
+ jhbuild shell
+
+- As for building the all-important extra libraries that Gnaural needs (portaudio, sndfile, libglade), all are compilable by source code, but at least libglade can be much more conveniently built and installed in the local GTK+ dir by jhbuild by running:
+ jhbuild buildone libglade 
+Build the other two in the jhbuild shell too, btw. (PortAudio and sndfile). Do "configure" as the jhbuild's had done it, by grabbing a line from its build. In my case:
+
+./configure --prefix /Users/jw266/gtk/inst --libdir '${exec_prefix}/lib'  --disable-static --disable-gtk-doc --disable-docs --disable-scrollkeeper --without-emacs --disable-java --disable-native-java --disable-libasprintf --disable-csharp
+
+That will "make install" conveniently set everything down in the local ~/gtk/ stash.
+
+- Build Gnaural in the same way, with the jhbuild configure line (above), make install it (so the bundler can find everything -- uh, seems I need to re-examine gnaural's Makefile's installer, btw - make uninstall seems to leave some minor detritus), then run the bundler to get gnaural from there. Gnaural.icns needs to be wherever you have gnaural.bundle, btw -- it doesn't get installed with make install because it is an oddball.
+
+- install_name_tool might be needed for good housecleaning on the exe and libs too; running otool -L on Gnaural-bin shows that it's hard-coded paths to my home directory for the libs; the bundle start scrips seems to override this, but still, that's not the way to leave it. This page helps in use of the tool:
+http://qin.laya.com/tech_coding_help/dylib_linking.html
+
+- This is what comprises my "gnaural.bundle" file that gets processed by ige-mac-bundler (http://developer.imendio.com/projects/gtk-macosx/creating-app-bundles)
+
+===========
+[start of file]
+<?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
+<app-bundle>
+
+  <meta>
+    <!-- Where to pick up the GTK+ installation, icon themes,
+         etc. Note that "${env:JHBUILD_PREFIX}" is evaluated to the
+         value of the environment variable JHBUILD_PREFIX. You can
+         define additional prefixes and refer to them in paths
+         throughout this file on the form "${prefix:name}". This is
+         useful for installing certain libraries or even the
+         application itself separately. Note that JHBUILD_PREFIX is
+         defined by jhbuild, so it you are not using jhbuild you can
+         either define your own or just hardcode the path here.
+    -->
+    <prefix name="default">${env:JHBUILD_PREFIX}</prefix>
+
+    <!-- The project directory is the default location of the created
+         app. If you leave out the path, the current directory is
+         used. Note the usage of an environment variable here again.
+    -->
+    <destination overwrite="yes">${env:HOME}/Desktop</destination>
+
+    <image>
+      <!-- Not implemented yet (DMG image). -->
+    </image>
+
+    <!-- Optionally specify a launcher script to use. If the
+         application sets up everything needed itself, like
+         environment variable, linker paths, etc, a launcher script is
+         not needed. If the source path is left out, the default
+         script will be used.
+    -->
+    <!--launcher-script>${project}/launcher.sh</launcher-script-->
+
+    <!-- Not implemented: Optional runtime, could be python or mono
+         for example.
+    -->
+    <!--runtime copy="yes">/usr/bin/python</runtime-->
+  </meta>
+
+  <!-- The special macro "${project}" refers to the directory where
+       this bundle file is located. The application name and bundle
+       identifier are taken from the plist file.
+  -->
+  <plist>${project}/Info.plist</plist>
+
+  <main-binary>${prefix}/bin/gnaural</main-binary>
+
+  <!-- Copy in GTK+ modules. Note the use of the
+       "${pkg:module:variable}" macro, which evaluates to a pkg-config
+       variable in the specified module. Note that any libraries that
+       binaries link to are also copied in automatically.
+  -->
+  <binary>
+    ${prefix}/lib/gtk-2.0/${pkg:gtk+-2.0:gtk_binary_version}/loaders/*.so
+  </binary>
+
+  <!-- Data to copy in, usually Glade/UI files, images, sounds files
+       etc. The destination inside the bundle can be specified if the
+       files should end up at a different location, by using the
+       "dest" property. The destination must then start with the macro
+       "${bundle}", which refers to the bundle root directory.
+  -->
+  <data>
+    ${prefix}/share/gnaural/gnaural.glade
+  </data>
+
+  <data dest="${bundle}/Contents/Resources">
+    ${project}/Gnaural.icns
+  </data>
+
+  <data dest="${bundle}/Contents/Resources/etc/gtk-2.0/gtkrc">
+    ${project}/gtkrc
+  </data>
+
+  <!-- Icon themes to copy. The "icons" property can be either of
+       "auto", "all", or "none". All or none should be
+       self-explanatory, while auto means that the script will try to
+       figure out which icons are needed. This is done by getting all
+       the strings from all copied binaries, and matching them against
+       icon names. To be safe, you should use "all". "none" is useful
+       if you want just the index.theme file but no icons, mostly
+       needed for the "hicolor" base theme.
+  -->
+  <icon-theme icons="auto">
+    Tango
+  </icon-theme>
+
+</app-bundle>
+[end of file]
+===========
+
+- You must also have an "Info.plist" file - here's what I'm currently using:
+===========
+[start of file]
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Gnaural</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Gnaural 1.0 Copyright 2008 Bret Logan</string>
+	<key>CFBundleIconFile</key>
+	<string>Gnaural.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.bretware.Gnaural</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright 2008 Bret Logan, GNU General Public License.</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.4</string>
+</dict>
+</plist>
+[end of file]
+===========
+
+- bundler also wants a "gtkrc" file:
+===========
+[start of file]
+gtk-icon-theme-name = "Tango"
+gtk-enable-mnemonics = 0
+[end of file]
+===========
+
+- To make an icns file, download pic2icon and run a 512x512 scaled Gnaural icon through it. Then run it through "Icon Composer", found down in "/Developer/Applications/Utilities/Icon Composer.app" - I got all this from here:
+http://macapper.com/2007/04/21/how-to-create-custom-icons-for-your-mac/
+
+- To  make a .dmg (mountable downloaded bundle), run Disk Utility.app
+
+- PKG_CONFIG_PATH=/Users/jw266/gtk/inst/lib/pkgconfig:/Users/jw266/gtk/inst/share/pkgconfig:/usr/lib/pkgconfig
+
+- the cvs commands:
+cvs -z3 -d:pserver:anonymous@gnaural.cvs.sourceforge.net:/cvsroot/gnaural co -P gnaural
+cvs -z3 -d:ext:gnaural@gnaural.cvs.sourceforge.net:/cvsroot/gnaural commit
+
+
+
+

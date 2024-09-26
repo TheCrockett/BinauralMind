@@ -1,0 +1,77 @@
+This is not a pretty subject, have yet to really understand the nuances of why it frequently just doesn't work they way i'd hope it would (i.e., eliminating all requirements for external libs), but this is as good as i know right now:
+
+Static linking all the libs my simply putting "-static" on the link line just won't work, basically because something about the GTK+ libs either is required to load stuff run-time or the link order of libraries is not possible to arrange  properly. But GTK+ really SHOULD be installed on at least any Linux distro; so the real goal in static linking is eliminating the more obscure libraries that won't be on them.
+
+Using Puppy Linux as the benchmark (since by definition as a live-cd it has to be one of the most stripped-down distributions), by eliminating the need for portaudio, sndfile, and glade, Gnaural can run.
+
+To achieve that, start by downloading the code and build it as usual:
+
+ cvs -z3 -d:pserver:anonymous@gnaural.cvs.sourceforge.net:/cvsroot/gnaural co -P gnaural
+ cd gnaural
+ ./configure prefix=/usr
+ make
+
+When it is finished, look for the final line spit out by the compiler - the link line that assembles all the combiled libraries together in to an executable. This is our starting point, so paste that line in an editor. To static link to just specific libraries, the key is to replace the normal "-l" link directives to the three ".so" libraries with a hard coded paths to each's ".a" equivalent; you can see what they are by looking in the "/usr/lib" directory, remembering that the "-l" link directive arbitrarily strips the "lib" actually found at the start of most libraries. What you end up with is:
+
+ -lsndfile
+becomes 
+ /usr/lib/libsndfile.a
+ 
+ -lportaudio
+becomes 
+ /usr/lib/libportaudio.a
+
+ -lglade-2.0
+becomes
+ /usr/lib/libglade-2.0.a
+ 
+Switching those three out in the link line results in this:
+
+ gcc  -g -O2  -Wl,-export-dynamic -o gnaural main.o BinauralBeat.o ScheduleGUI.o ScheduleXML.o support.o callbacks.o exportAudio.o voiceGUI.o playAudio.o gnauralnet_main.o gnauralnet_lists.o gnauralnet_clocksync.o gnauralnet_socket.o gnauralnet_running.o gnauralnet_gui.o -pthread /usr/lib/libglade-2.0.a -lgtk-x11-2.0 -lxml2 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lpangocairo-1.0 -lgio-2.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0 /usr/lib/libsndfile.a /usr/lib/libportaudio.a -lasound -lm -lpthread 
+
+Remembering to cd to the src/ directory, then pasting this at the command line, you will quickly discover that it spits out a slew of errors. Now, it becomes apparent that the only troublemaker is libsndfile, and indeed, if you replace it with the old "-lsndfile" it links fine. So what was the problem? The problem is that libsndfile.a needs other supporting libraries, which in turn also need to be added to the link line. This is where things get tricky, because ORDER DOES MATTER, a lot, when linking libraries. Take any one of the errors, say:
+ undefined reference to `ogg_page_eos'
+
+Here's the trick to figure out what it needs for that:
+ nm -Bog /usr/lib/*ogg*.a | grep ogg_page_eos
+
+Which spits out:
+ /usr/lib/libogg.a:framing.o:00000050 T ogg_page_eos
+
+And in fact, going through all of them you discover eventually that you need 4 libs:
+ /usr/lib/libFLAC.a
+ /usr/lib/libvorbis.a
+ /usr/lib/libogg.a
+ /usr/lib/libvorbisenc.a [one symbol needed this]
+
+ /usr/lib/libFLAC.a /usr/lib/libvorbis.a /usr/lib/libogg.a /usr/lib/libvorbisenc.a
+
+So you add them to the line, but only FOLLOWING /usr/lib/libsndfile.a, and in fact, i'd suggest starting with the order in which the link errors first appear (order REALLY matters!):
+
+ gcc  -g -O2  -Wl,-export-dynamic -o gnaural main.o BinauralBeat.o ScheduleGUI.o ScheduleXML.o support.o callbacks.o exportAudio.o voiceGUI.o playAudio.o gnauralnet_main.o gnauralnet_lists.o gnauralnet_clocksync.o gnauralnet_socket.o gnauralnet_running.o gnauralnet_gui.o -pthread /usr/lib/libglade-2.0.a -lgtk-x11-2.0 -lxml2 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lpangocairo-1.0 -lgio-2.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0 /usr/lib/libsndfile.a /usr/lib/libFLAC.a /usr/lib/libvorbis.a /usr/lib/libogg.a /usr/lib/libvorbisenc.a /usr/lib/libportaudio.a -lasound -lm -lpthread 
+ 
+And it works, and you are done, unless you want to strip it (which in this case results in so small a savings i choose to be on the safe side and "not").
+
+Things to remember when linking statically:
+
+- Order DOES matter, a LOT - usually not even working at all unless perfect, and yet even when it DOES compile you'll notice it is a different sized executable! Weird, but suffice to say if you end up with mysterious problems, try playing with the placement of the ".a" files in the link line. In general, dependencies seem to need to FOLLOW calling library - as in the sndfile example above, and that goes for dependencies needed by those libraries too.
+
+- ldd is your best friend in this endeavor, because it tells you what the library dependencies are. As an example, just run:
+ ldd ./gnaural
+- nm is your second best friend - try "nm -Bog /usr/lib/*" to see all functions declared in all libraries, which you can then use grep.
+
+- This is a useful page:
+ http://www.tldp.org/HOWTO/Program-Library-HOWTO/index.html
+
+- Just telling it to link to a library statically may not actually remove the dependency for that library (for example, libgio-2.0 above), i guess because other still-needed external libraries themselves need it. For an extreme experiment of how much i can remove from that link line, this was the limit:
+
+  gcc -g -O2 --disable-shared -Wl,-export-dynamic -o gnaural main.o BinauralBeat.o ScheduleGUI.o ScheduleXML.o support.o callbacks.o exportAudio.o voiceGUI.o playAudio.o gnauralnet_main.o gnauralnet_lists.o gnauralnet_clocksync.o gnauralnet_socket.o gnauralnet_running.o gnauralnet_gui.o -pthread /usr/lib/libgio-2.0.a /usr/lib/libportaudio.a /usr/lib/libjack.a /usr/lib/libglade-2.0.a /usr/lib/libgtk-x11-2.0.a /usr/lib/libxml2.a -lgdk-x11-2.0 /usr/lib/libatk-1.0.a /usr/lib/libpangoft2-1.0.a -lgdk_pixbuf-2.0 /usr/lib/libpangocairo-1.0.a /usr/lib/libcairo.a -lpango-1.0 /usr/lib/libfreetype.a /usr/lib/libfontconfig.a /usr/lib/libgobject-2.0.a /usr/lib/libgmodule-2.0.a /usr/lib/libgthread-2.0.a /usr/lib/librt.a /usr/lib/libglib-2.0.a /usr/lib/libsndfile.a /usr/lib/libFLAC.a /usr/lib/libvorbis.a /usr/lib/libogg.a /usr/lib/libvorbisenc.a /usr/lib/libasound.a /usr/lib/libm.a -lpthread
+
+Ultimately these were the libs i couldn't replace easily: 
+ -lgdk_pixbuf-2.0
+ -lgdk-x11-2.0
+ -lpango-1.0
+ -lpthread
+
+As for why not to do this: for one, it makes an 10.1meg executable! And even worse, running the executable creates a lot of verbage about doubly-registering stuff, clearly because you have some function in your program calling static versions of the libraries and others calling the same routines in the dynamic libs. But it DOES run. But it doesn't actually eliminate the need for the the dynamic libs causing the problems (as "ldd" will illustrate), and just isn't advised generally. Basically, the rule is to not mess with the GTK+ related libs. But i'd LOVE to, because it would make porting to Mac and MacOSX vastly easier.
+

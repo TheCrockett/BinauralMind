@@ -1,0 +1,15 @@
+Gnaural
+
+20080225b8:
+-First version with elementary networking (e.g., "GnauralNet"). It doesn't look 
+  like much, perhaps, but inside is the groundwork for some pretty ambitious plans.
+  Currently, in theory, any number of Gnaurals can connect to each other; but for
+  now, they don't share schedules (or even particular check that different Gnaurals are
+  running the same schedule) -- but for people using the default internal one, it is an 
+  interesting way to, say, get 250 people exactly in the same wavelength (if you're 
+  trying for world peace or such). I've finally decided to release it as-is (even knowing 
+  there will be big changes soon) because the direction it goes depends on what people
+  actually want to use; and continuing to code without that sense is sure to be a waste.
+
+20070707a1:
+- First release (alpha, currently linux only)

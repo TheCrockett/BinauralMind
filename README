@@ -1,0 +1,12 @@
+What is Gnaural? 
+================
+Gnaural is an audio synthesizer intended for use as a binaural beat generator, but capable of far more. Its core functionality is to produces stereo sine waves whose base frequencies can be independently altered in order to produce the phasing required for binaural beats. These beats can in turn precisely modulated over time in both their base and beat frequencies, as well as in their volume and stereo positioning. 
+
+Beyond that, Gnaural, is "multi-voiced", meaning it can have unlimited simultaneously-played tracks ("voices" in Gnaural-speak) of the above-described sine waves, plus other kinds of voices, including:
+ - User-defined audio file loops (formats Gnaural can handle include OGG, FLAC, WAV, and AIFF)
+ - Gnaural's internally generated Pink Noise
+ - monaural beats known popularly as "Isochronic Tones"
+
+All voices can be modulated over time in their volume and stereo placement.
+
+Gnaural's output can either be played directly through your computers sound system, or exported (via the menu item "File->Export Audio To File") to any number of audio file formats, including OGG, FLAC, WAV, AIFF.

@@ -1,0 +1,367 @@
+/usr/bin/make  all-recursive
+make[1]: Entering directory '/home/bbl2/src/gnaural'
+Making all in src
+make[2]: Entering directory '/home/bbl2/src/gnaural/src'
+Making all in net
+make[3]: Entering directory '/home/bbl2/src/gnaural/src/net'
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_client_example.o -MD -MP -MF .deps/gnauralnet_client_example.Tpo -c -o gnauralnet_client_example.o gnauralnet_client_example.c
+gnauralnet_client_example.c: In function ‘main’:
+gnauralnet_client_example.c:49:2: warning: ‘g_thread_init’ is deprecated [-Wdeprecated-declarations]
+  g_thread_init (NULL);
+  ^~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib.h:108:0,
+                 from ../../src/gnauralnet.h:42,
+                 from gnauralnet_client_example.c:25:
+/usr/include/glib-2.0/glib/deprecated/gthread.h:265:10: note: declared here
+ void     g_thread_init                   (gpointer vtable);
+          ^~~~~~~~~~~~~
+mv -f .deps/gnauralnet_client_example.Tpo .deps/gnauralnet_client_example.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_clocksync.o -MD -MP -MF .deps/gnauralnet_clocksync.Tpo -c -o gnauralnet_clocksync.o `test -f '../gnauralnet_clocksync.c' || echo './'`../gnauralnet_clocksync.c
+mv -f .deps/gnauralnet_clocksync.Tpo .deps/gnauralnet_clocksync.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_lists.o -MD -MP -MF .deps/gnauralnet_lists.Tpo -c -o gnauralnet_lists.o `test -f '../gnauralnet_lists.c' || echo './'`../gnauralnet_lists.c
+mv -f .deps/gnauralnet_lists.Tpo .deps/gnauralnet_lists.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_main.o -MD -MP -MF .deps/gnauralnet_main.Tpo -c -o gnauralnet_main.o `test -f '../gnauralnet_main.c' || echo './'`../gnauralnet_main.c
+In file included from ../gnauralnet_main.c:67:0:
+../gnauralnet_main.c: In function ‘GN_start’:
+../gnauralnet.h:306:66: warning: format ‘%d’ expects argument of type ‘int’, but argument 6 has type ‘long unsigned int’ [-Wformat=]
+ #define GN_DBGOUT_INT(a,b)            GN_DBGFLAG  fprintf(stderr,"%s %d: %s %d\n",__FILE__,__LINE__,a, b);
+                                                                  ^
+../gnauralnet_main.c:106:2: note: in expansion of macro ‘GN_DBGOUT_INT’
+  GN_DBGOUT_INT ("Size of GN_CommBuffer:", sizeof (GN_CommBuffer));
+  ^~~~~~~~~~~~~
+../gnauralnet_main.c:121:7: warning: ‘g_thread_create’ is deprecated: Use 'g_thread_new' instead [-Wdeprecated-declarations]
+       g_thread_create ((GThreadFunc) GN_MainLoop, (void *) NULL, FALSE,
+       ^~~~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib.h:108:0,
+                 from ../gnauralnet.h:42,
+                 from ../gnauralnet_main.c:67:
+/usr/include/glib-2.0/glib/deprecated/gthread.h:104:10: note: declared here
+ GThread *g_thread_create       (GThreadFunc       func,
+          ^~~~~~~~~~~~~~~
+mv -f .deps/gnauralnet_main.Tpo .deps/gnauralnet_main.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_socket.o -MD -MP -MF .deps/gnauralnet_socket.Tpo -c -o gnauralnet_socket.o `test -f '../gnauralnet_socket.c' || echo './'`../gnauralnet_socket.c
+mv -f .deps/gnauralnet_socket.Tpo .deps/gnauralnet_socket.Po
+/usr/bin/gcc  -g3 -gdwarf-2  `pkg-config --libs glib-2.0` -Wl,-export-dynamic -o gnauralnet_client_example gnauralnet_client_example.o gnauralnet_clocksync.o gnauralnet_lists.o gnauralnet_main.o gnauralnet_socket.o -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lfontconfig -lfreetype -lgthread-2.0 -pthread -lglib-2.0 -lsndfile -lportaudio -lasound -lm -lpthread   
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_flasher.o -MD -MP -MF .deps/gnauralnet_flasher.Tpo -c -o gnauralnet_flasher.o gnauralnet_flasher.c
+gnauralnet_flasher.c: In function ‘flasher_GN_main’:
+gnauralnet_flasher.c:230:2: warning: ‘g_thread_init’ is deprecated [-Wdeprecated-declarations]
+  g_thread_init (NULL);
+  ^~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib.h:108:0,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:28,
+                 from /usr/include/glib-2.0/glib-object.h:23,
+                 from /usr/include/glib-2.0/gio/gioenums.h:28,
+                 from /usr/include/glib-2.0/gio/giotypes.h:28,
+                 from /usr/include/glib-2.0/gio/gio.h:26,
+                 from /usr/include/gtk-2.0/gdk/gdkapplaunchcontext.h:30,
+                 from /usr/include/gtk-2.0/gdk/gdk.h:32,
+                 from /usr/include/gtk-2.0/gtk/gtk.h:32,
+                 from gnauralnet_flasher.c:23:
+/usr/include/glib-2.0/glib/deprecated/gthread.h:265:10: note: declared here
+ void     g_thread_init                   (gpointer vtable);
+          ^~~~~~~~~~~~~
+mv -f .deps/gnauralnet_flasher.Tpo .deps/gnauralnet_flasher.Po
+/usr/bin/gcc  -g3 -gdwarf-2  `pkg-config --libs glib-2.0`   -Wl,-export-dynamic  -Wl,-export-dynamic -o gnauralnet_flasher gnauralnet_flasher.o gnauralnet_clocksync.o gnauralnet_lists.o gnauralnet_main.o gnauralnet_socket.o -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lfontconfig -lfreetype -lgthread-2.0 -pthread -lglib-2.0 -lsndfile -lportaudio -lasound -lm -lpthread   
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralscape.o -MD -MP -MF .deps/gnauralscape.Tpo -c -o gnauralscape.o gnauralscape.c
+mv -f .deps/gnauralscape.Tpo .deps/gnauralscape.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT MakeLand.o -MD -MP -MF .deps/MakeLand.Tpo -c -o MakeLand.o MakeLand.c
+mv -f .deps/MakeLand.Tpo .deps/MakeLand.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I../.. -DGN_STANDALONE -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -I../../src -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT LandCaster.o -MD -MP -MF .deps/LandCaster.Tpo -c -o LandCaster.o LandCaster.c
+mv -f .deps/LandCaster.Tpo .deps/LandCaster.Po
+/usr/bin/gcc  -g3 -gdwarf-2  `pkg-config --libs glib-2.0`   -Wl,-export-dynamic  -Wl,-export-dynamic -o gnauralscape gnauralscape.o MakeLand.o LandCaster.o -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lfontconfig -lfreetype -lgthread-2.0 -pthread -lglib-2.0 -lsndfile -lportaudio -lasound -lm -lpthread   
+make[3]: Leaving directory '/home/bbl2/src/gnaural/src/net'
+make[3]: Entering directory '/home/bbl2/src/gnaural/src'
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+main.c: In function ‘main’:
+main.c:257:2: warning: ‘g_thread_init’ is deprecated [-Wdeprecated-declarations]
+  g_thread_init (NULL);
+  ^~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib.h:108:0,
+                 from main.c:48:
+/usr/include/glib-2.0/glib/deprecated/gthread.h:265:10: note: declared here
+ void     g_thread_init                   (gpointer vtable);
+          ^~~~~~~~~~~~~
+main.c: In function ‘main_AudioWriteFile_start’:
+main.c:2902:7: warning: ‘g_thread_create’ is deprecated: Use 'g_thread_new' instead [-Wdeprecated-declarations]
+       g_thread_create ((GThreadFunc) main_AudioWriteFile, (void *) NULL, TRUE,
+       ^~~~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib.h:108:0,
+                 from main.c:48:
+/usr/include/glib-2.0/glib/deprecated/gthread.h:104:10: note: declared here
+ GThread *g_thread_create       (GThreadFunc       func,
+          ^~~~~~~~~~~~~~~
+main.c: In function ‘main_RunCmdLineMode’:
+main.c:3420:8: warning: ‘g_thread_create’ is deprecated: Use 'g_thread_new' instead [-Wdeprecated-declarations]
+        g_thread_create ((GThreadFunc) main_AudioWriteFile, (void *) NULL,
+        ^~~~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib.h:108:0,
+                 from main.c:48:
+/usr/include/glib-2.0/glib/deprecated/gthread.h:104:10: note: declared here
+ GThread *g_thread_create       (GThreadFunc       func,
+          ^~~~~~~~~~~~~~~
+In file included from main.c:57:0:
+main.c: In function ‘main_LoadSoundFile_shorts’:
+ScheduleGUI.h:42:59: warning: format ‘%d’ expects argument of type ‘int’, but argument 6 has type ‘long unsigned int’ [-Wformat=]
+ #define SG_DBGOUT_INT(a,b)  SG_GNAURALDBG  fprintf(stderr,"%s %d: %s %d\n",__FILE__,__LINE__,a, b);
+                                                           ^
+main.c:4449:2: note: in expansion of macro ‘SG_DBGOUT_INT’
+  SG_DBGOUT_INT ("array sizeof (bytes):",
+  ^~~~~~~~~~~~~
+main.c: In function ‘main_LoadSoundFile’:
+ScheduleGUI.h:42:59: warning: format ‘%d’ expects argument of type ‘int’, but argument 6 has type ‘long unsigned int’ [-Wformat=]
+ #define SG_DBGOUT_INT(a,b)  SG_GNAURALDBG  fprintf(stderr,"%s %d: %s %d\n",__FILE__,__LINE__,a, b);
+                                                           ^
+main.c:4517:2: note: in expansion of macro ‘SG_DBGOUT_INT’
+  SG_DBGOUT_INT ("array sizeof (bytes):",
+  ^~~~~~~~~~~~~
+In file included from main.c:57:0:
+main.c: At top level:
+ScheduleGUI.h:135:13: warning: inline function ‘SG_GetScheduleLimits’ declared but never defined
+ inline void SG_GetScheduleLimits (void);        //fills maxduration and maxbeatfrequency global variables
+             ^~~~~~~~~~~~~~~~~~~~
+In file included from ScheduleGUI.h:30:0,
+                 from main.c:57:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/main.Tpo .deps/main.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT BinauralBeat.o -MD -MP -MF .deps/BinauralBeat.Tpo -c -o BinauralBeat.o BinauralBeat.c
+mv -f .deps/BinauralBeat.Tpo .deps/BinauralBeat.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT ScheduleGUI.o -MD -MP -MF .deps/ScheduleGUI.Tpo -c -o ScheduleGUI.o ScheduleGUI.c
+In file included from ScheduleGUI.h:30:0,
+                 from ScheduleGUI.c:36:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/ScheduleGUI.Tpo .deps/ScheduleGUI.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT ScheduleXML.o -MD -MP -MF .deps/ScheduleXML.Tpo -c -o ScheduleXML.o ScheduleXML.c
+mv -f .deps/ScheduleXML.Tpo .deps/ScheduleXML.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT callbacks.o -MD -MP -MF .deps/callbacks.Tpo -c -o callbacks.o callbacks.c
+In file included from main.h:21:0,
+                 from callbacks.c:8:
+ScheduleGUI.h:135:13: warning: inline function ‘SG_GetScheduleLimits’ declared but never defined
+ inline void SG_GetScheduleLimits (void);        //fills maxduration and maxbeatfrequency global variables
+             ^~~~~~~~~~~~~~~~~~~~
+In file included from ScheduleGUI.h:30:0,
+                 from main.h:21,
+                 from callbacks.c:8:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/callbacks.Tpo .deps/callbacks.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT exportAudio.o -MD -MP -MF .deps/exportAudio.Tpo -c -o exportAudio.o exportAudio.c
+In file included from exportAudio.c:26:0:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/exportAudio.Tpo .deps/exportAudio.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT voiceGUI.o -MD -MP -MF .deps/voiceGUI.Tpo -c -o voiceGUI.o voiceGUI.c
+In file included from main.h:21:0,
+                 from voiceGUI.c:42:
+ScheduleGUI.h:135:13: warning: inline function ‘SG_GetScheduleLimits’ declared but never defined
+ inline void SG_GetScheduleLimits (void);        //fills maxduration and maxbeatfrequency global variables
+             ^~~~~~~~~~~~~~~~~~~~
+In file included from ScheduleGUI.h:30:0,
+                 from main.h:21,
+                 from voiceGUI.c:42:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/voiceGUI.Tpo .deps/voiceGUI.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT playAudio.o -MD -MP -MF .deps/playAudio.Tpo -c -o playAudio.o playAudio.c
+In file included from playAudio.c:38:0:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/playAudio.Tpo .deps/playAudio.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_main.o -MD -MP -MF .deps/gnauralnet_main.Tpo -c -o gnauralnet_main.o gnauralnet_main.c
+In file included from gnauralnet_main.c:67:0:
+gnauralnet_main.c: In function ‘GN_start’:
+gnauralnet.h:306:66: warning: format ‘%d’ expects argument of type ‘int’, but argument 6 has type ‘long unsigned int’ [-Wformat=]
+ #define GN_DBGOUT_INT(a,b)            GN_DBGFLAG  fprintf(stderr,"%s %d: %s %d\n",__FILE__,__LINE__,a, b);
+                                                                  ^
+gnauralnet_main.c:106:2: note: in expansion of macro ‘GN_DBGOUT_INT’
+  GN_DBGOUT_INT ("Size of GN_CommBuffer:", sizeof (GN_CommBuffer));
+  ^~~~~~~~~~~~~
+gnauralnet_main.c:121:7: warning: ‘g_thread_create’ is deprecated: Use 'g_thread_new' instead [-Wdeprecated-declarations]
+       g_thread_create ((GThreadFunc) GN_MainLoop, (void *) NULL, FALSE,
+       ^~~~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib.h:108:0,
+                 from gnauralnet.h:42,
+                 from gnauralnet_main.c:67:
+/usr/include/glib-2.0/glib/deprecated/gthread.h:104:10: note: declared here
+ GThread *g_thread_create       (GThreadFunc       func,
+          ^~~~~~~~~~~~~~~
+mv -f .deps/gnauralnet_main.Tpo .deps/gnauralnet_main.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_lists.o -MD -MP -MF .deps/gnauralnet_lists.Tpo -c -o gnauralnet_lists.o gnauralnet_lists.c
+mv -f .deps/gnauralnet_lists.Tpo .deps/gnauralnet_lists.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_clocksync.o -MD -MP -MF .deps/gnauralnet_clocksync.Tpo -c -o gnauralnet_clocksync.o gnauralnet_clocksync.c
+mv -f .deps/gnauralnet_clocksync.Tpo .deps/gnauralnet_clocksync.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_socket.o -MD -MP -MF .deps/gnauralnet_socket.Tpo -c -o gnauralnet_socket.o gnauralnet_socket.c
+mv -f .deps/gnauralnet_socket.Tpo .deps/gnauralnet_socket.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_running.o -MD -MP -MF .deps/gnauralnet_running.Tpo -c -o gnauralnet_running.o gnauralnet_running.c
+In file included from gnauralnet_running.c:30:0:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/gnauralnet_running.Tpo .deps/gnauralnet_running.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralnet_gui.o -MD -MP -MF .deps/gnauralnet_gui.Tpo -c -o gnauralnet_gui.o gnauralnet_gui.c
+In file included from main.h:21:0,
+                 from gnauralnet_gui.c:30:
+ScheduleGUI.h:135:13: warning: inline function ‘SG_GetScheduleLimits’ declared but never defined
+ inline void SG_GetScheduleLimits (void);        //fills maxduration and maxbeatfrequency global variables
+             ^~~~~~~~~~~~~~~~~~~~
+In file included from ScheduleGUI.h:30:0,
+                 from main.h:21,
+                 from gnauralnet_gui.c:30:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/gnauralnet_gui.Tpo .deps/gnauralnet_gui.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralXML.o -MD -MP -MF .deps/gnauralXML.Tpo -c -o gnauralXML.o gnauralXML.c
+gnauralXML.c: In function ‘gxml_XMLEventDataParser’:
+gnauralXML.c:219:4: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+    (void *) (atoi (Value) + 1);
+    ^
+In file included from main.h:21:0,
+                 from gnauralXML.c:30:
+gnauralXML.c: At top level:
+ScheduleGUI.h:135:13: warning: inline function ‘SG_GetScheduleLimits’ declared but never defined
+ inline void SG_GetScheduleLimits (void);        //fills maxduration and maxbeatfrequency global variables
+             ^~~~~~~~~~~~~~~~~~~~
+In file included from ScheduleGUI.h:30:0,
+                 from main.h:21,
+                 from gnauralXML.c:30:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/gnauralXML.Tpo .deps/gnauralXML.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralRecentMenu.o -MD -MP -MF .deps/gnauralRecentMenu.Tpo -c -o gnauralRecentMenu.o gnauralRecentMenu.c
+In file included from main.h:21:0,
+                 from gnauralRecentMenu.c:25:
+ScheduleGUI.h:135:13: warning: inline function ‘SG_GetScheduleLimits’ declared but never defined
+ inline void SG_GetScheduleLimits (void);        //fills maxduration and maxbeatfrequency global variables
+             ^~~~~~~~~~~~~~~~~~~~
+In file included from ScheduleGUI.h:30:0,
+                 from main.h:21,
+                 from gnauralRecentMenu.c:25:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/gnauralRecentMenu.Tpo .deps/gnauralRecentMenu.Po
+/usr/bin/gcc -DHAVE_CONFIG_H -I. -I.. -DPACKAGE_DATA_DIR=\""/usr/local/share"\" -DPACKAGE_LOCALE_DIR=\""/usr/local/share/locale"\" -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include    -g3 -gdwarf-2  -MT gnauralVU.o -MD -MP -MF .deps/gnauralVU.Tpo -c -o gnauralVU.o gnauralVU.c
+In file included from main.h:21:0,
+                 from gnauralVU.c:25:
+ScheduleGUI.h:135:13: warning: inline function ‘SG_GetScheduleLimits’ declared but never defined
+ inline void SG_GetScheduleLimits (void);        //fills maxduration and maxbeatfrequency global variables
+             ^~~~~~~~~~~~~~~~~~~~
+In file included from ScheduleGUI.h:30:0,
+                 from main.h:21,
+                 from gnauralVU.c:25:
+BinauralBeat.h:163:13: warning: inline function ‘BB_ResetAllVoices’ declared but never defined
+ inline void BB_ResetAllVoices ();       // zeros all CurEntry's
+             ^~~~~~~~~~~~~~~~~
+BinauralBeat.h:160:12: warning: inline function ‘BB_PowerLaw’ declared but never defined
+ inline int BB_PowerLaw (int randomnumber, int rand_max, int max_out);
+            ^~~~~~~~~~~
+BinauralBeat.h:159:12: warning: inline function ‘BB_LoPass’ declared but never defined
+ inline int BB_LoPass (int *staticvar, int randomnumber);        //20110506, weird lo-pass filter essentially
+            ^~~~~~~~~
+mv -f .deps/gnauralVU.Tpo .deps/gnauralVU.Po
+/usr/bin/gcc  -g3 -gdwarf-2  -Wl,-export-dynamic  -Wl,-export-dynamic -o gnaural main.o BinauralBeat.o ScheduleGUI.o ScheduleXML.o callbacks.o exportAudio.o voiceGUI.o playAudio.o gnauralnet_main.o gnauralnet_lists.o gnauralnet_clocksync.o gnauralnet_socket.o gnauralnet_running.o gnauralnet_gui.o gnauralXML.o gnauralRecentMenu.o gnauralVU.o -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lfontconfig -lfreetype -lgthread-2.0 -pthread -lglib-2.0 -lsndfile -lportaudio -lasound -lm -lpthread   
+main.o: In function `main_key_press_event':
+/home/bbl2/src/gnaural/src/main.c:935: undefined reference to `BB_ResetAllVoices'
+main.o: In function `main_OnButton_ForwardRewind':
+/home/bbl2/src/gnaural/src/main.c:2002: undefined reference to `BB_ResetAllVoices'
+main.o: In function `main_TruncateSchedule':
+/home/bbl2/src/gnaural/src/main.c:4265: undefined reference to `BB_ResetAllVoices'
+BinauralBeat.o: In function `BB_MainLoop':
+/home/bbl2/src/gnaural/src/BinauralBeat.c:447: undefined reference to `BB_ResetAllVoices'
+/home/bbl2/src/gnaural/src/BinauralBeat.c:483: undefined reference to `BB_ResetAllVoices'
+/home/bbl2/src/gnaural/src/BinauralBeat.c:772: undefined reference to `BB_LoPass'
+/home/bbl2/src/gnaural/src/BinauralBeat.c:773: undefined reference to `BB_LoPass'
+BinauralBeat.o: In function `BB_Reset':
+/home/bbl2/src/gnaural/src/BinauralBeat.c:979: undefined reference to `BB_ResetAllVoices'
+BinauralBeat.o: In function `BB_Water':
+/home/bbl2/src/gnaural/src/BinauralBeat.c:1328: undefined reference to `BB_LoPass'
+/home/bbl2/src/gnaural/src/BinauralBeat.c:1330: undefined reference to `BB_LoPass'
+ScheduleGUI.o: In function `SG_CopyDataPoints':
+/home/bbl2/src/gnaural/src/ScheduleGUI.c:2565: undefined reference to `SG_GetScheduleLimits'
+ScheduleGUI.o: In function `SG_ConvertDataToXY':
+/home/bbl2/src/gnaural/src/ScheduleGUI.c:3211: undefined reference to `SG_GetScheduleLimits'
+ScheduleGUI.o: In function `SG_SetupDefaultDataPoints':
+/home/bbl2/src/gnaural/src/ScheduleGUI.c:4165: undefined reference to `SG_GetScheduleLimits'
+gnauralXML.o: In function `gxml_XMLReadFile':
+/home/bbl2/src/gnaural/src/gnauralXML.c:509: undefined reference to `BB_ResetAllVoices'
+collect2: error: ld returned 1 exit status
+Makefile:365: recipe for target 'gnaural' failed
+make[3]: *** [gnaural] Error 1
+make[3]: Leaving directory '/home/bbl2/src/gnaural/src'
+Makefile:413: recipe for target 'all-recursive' failed
+make[2]: *** [all-recursive] Error 1
+make[2]: Leaving directory '/home/bbl2/src/gnaural/src'
+Makefile:310: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/bbl2/src/gnaural'
+Makefile:246: recipe for target 'all' failed
+make: *** [all] Error 2

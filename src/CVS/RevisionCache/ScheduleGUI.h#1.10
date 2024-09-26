@@ -1,0 +1,228 @@
+/*
+   ScheduleGUI.h
+   Copyright (C) 2006-2009  Bret Logan
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+#ifndef _SCHEDULE_GUI_
+#define _SCHEDULE_GUI_
+
+#include <gtk/gtk.h>    //put here so ScheduleXML gets it; natively, it doesn't need it
+
+#define SG_SELECTED                         TRUE
+#define SG_UNSELECTED                       FALSE
+//#define SG_VISIBLE                          TRUE
+//#define SG_INVISIBLE                        FALSE
+
+//I do this hack solely to grab a few defines (BB_VOICETYPE_*, BB_AUDIBLE, etc.)
+#include "BinauralBeat.h"
+
+#define SG_GRAPHTYPE_BEATFREQ               1
+#define SG_GRAPHTYPE_BASEFREQ               3
+#define SG_GRAPHTYPE_VOLUME                 7
+#define SG_GRAPHTYPE_VOLUME_BALANCE         15
+
+//Define SG_GNAURALDBG accordingly to spit out debug info. Here are two versions:
+#define SG_GNAURALDBG if (TRUE == SG_DebugFlag)
+//#define SG_GNAURALDBG
+
+#define SG_DBGOUT_STR(a,b)  SG_GNAURALDBG  fprintf(stderr,"%s %d: %s %s\n",__FILE__,__LINE__,a, b);
+#define SG_DBGOUT_INT(a,b)  SG_GNAURALDBG  fprintf(stderr,"%s %d: %s %d\n",__FILE__,__LINE__,a, b);
+#define SG_DBGOUT_FLT(a,b)  SG_GNAURALDBG  fprintf(stderr,"%s %d: %s %g\n",__FILE__,__LINE__,a, b);
+#define SG_DBGOUT_PNT(a,b)  SG_GNAURALDBG  fprintf(stderr,"%s %d: %s %p\n",__FILE__,__LINE__,a,b);
+#define SG_DBGOUT(a)        SG_GNAURALDBG  fprintf(stderr,"%s %d: %s\n",__FILE__,__LINE__,a);
+#define SG_DBG()            SG_GNAURALDBG  fprintf(stderr,"%s %d\n",__FILE__,__LINE__);
+#define SG_ERROUT(a)        fprintf(stderr,"%s %d: #Error# %s\n",__FILE__,__LINE__,a);
+#define SG_ERROUT_INT(a,b)  fprintf(stderr,"%s %d: #Error# %s %d\n",__FILE__,__LINE__,a,b);
+
+//data structures:
+typedef struct SG_DataPoint_type
+{
+ double x;
+ double y;
+ double duration;               //duration of the datapoint's event in seconds
+ double volume_left;            //a value between 0 and 1
+ double volume_right;           //a value between 0 and 1
+ double basefreq;               //the frequency basis (in Hz) for the beatfreq's offset value
+ double beatfreq;               //the difference (in Hz) between the right and left audio channel (with basefreq as basis)
+ int state;                     //masks: SG_SELECTED and SG_UNSELECTED
+ struct SG_DataPoint_type *NextDataPoint;
+ struct SG_DataPoint_type *PrevDataPoint;
+ void *parent;                  //currently always a pointer to an SG_Voice *
+} SG_DataPoint;
+
+typedef struct SG_Voice_type
+{
+ int ID;                        // 0,1,2,... Not necessarily sequential, but assumed only to go lower to higher down linked list
+ int type;                      //masks: BB_VOICETYPE_BINAURALBEAT, BB_VOICETYPE_PINKNOISE, BB_VOICETYPE_PCM
+ int state;                     //SG_SELECTED or SG_UNSELECTED
+ int hide;                      //TRUE or FALSE
+ int mute;                      //TRUE or FALSE
+ int mono;                      //TRUE or FALSE [20100614]
+ char *description;             //Holds a string, usually a description, but a filename if BB_VOICETYPE_PCM
+ SG_DataPoint *FirstDataPoint;
+ struct SG_Voice_type *NextVoice;
+ struct SG_Voice_type *PrevVoice;
+} SG_Voice;
+
+typedef struct
+{
+ int status;                    //live=1, dead=0
+ int startX;
+ int startY;
+ int endX;
+ int endY;
+} SG_SelectionBox_type;
+
+//this is very important: it not only holds all Undo/Redo and 
+//Copy/Paste info, but is also used to load the graph with BB data:
+typedef struct
+{
+ int TotalVoices;               //total number of voices in the schedule
+ int TotalDataPoints;           //the total number of DataPoints held by DPdata
+ int OrigWidth;
+ int OrigHeight;
+ double OrigSG_TotalScheduleDuration;
+ //Following is allotted to the number of voices in order to store Voice-
+ //specific data, since SG_BackupData is streamlined to hold SG_DataPoint data:
+ SG_Voice *Voice;
+ SG_DataPoint *DPdata;          //this will hold all the raw data points
+} SG_BackupData;
+
+//global vars to be shared with any external code:
+extern SG_Voice *SG_FirstVoice;
+extern SG_DataPoint *SG_CurrentDataPoint;
+extern SG_SelectionBox_type SG_SelectionBox;
+extern double SG_TotalScheduleDuration;
+extern int SG_GraphType;        //Informs program what type of graph to draw/gather-data-through; can be SG_GRAPHTYPE_BASEFREQ, SG_GRAPHTYPE_BEATFREQ, SG_GRAPHTYPE_VOLUME, SG_GRAPHTYPE_VOLUME_BALANCE.
+extern gboolean SG_GraphHasChanged;     //lets any external code know when graph was cosmetically changed
+extern gboolean SG_DataHasChanged;      //lets any external code know when it should reload data
+extern SG_BackupData SG_UndoRedo;       //needed to be shared to serve as intermediary between SG and XML 
+extern int SG_DebugFlag;        //set to true to spit-out debug info
+extern int SG_GraphFontSize;    //[20100405] THIS IS IN PIXELS!!!!
+extern int SG_DataPointSize;    //[20100408] 
+extern PangoLayout *SG_PangoLayout;     //controls the fonts associated with the main drawing area
+extern gboolean SG_MagneticPointerflag;
+
+//functions:
+void SG_Init (GdkPixmap * pixmap);      //MUST be called with a valid pixmap for ScheduleGUI to draw on
+void SG_Cleanup ();
+void SG_SetupDefaultDataPoints (int numberofvoices);    //just puts something (small) in ScheduleGUI in case it is found empty
+void SG_DeselectDataPoints ();
+void SG_DrawGraph (GtkWidget * widget);
+void SG_DrawGrid (GtkWidget * widget, double vscale, char *vtext);
+void SG_DrawGridFast (GtkWidget * widget, double y_var);
+void SG_CleanupDataPoints (SG_DataPoint * firstDataPoint);      //caller must be sure to NULL firstDataPoint when done!
+SG_DataPoint *SG_AddNewDataPointToEnd (SG_DataPoint * FirstDP,
+                                       SG_Voice * voice, double duration,
+                                       double beatfreq, double volume_left,
+                                       double volume_right, double basefreq,
+                                       int state);
+SG_DataPoint *SG_InsertNewDataPointXY (GtkWidget * widget, SG_Voice * voice,
+                                       double x, double y);
+inline void SG_GetScheduleLimits (void);        //fills maxduration and maxbeatfrequency global variables
+void SG_ConvertDataToXY (GtkWidget * widget);   //call this, and it calls the right one below according to SG_GraphType's value
+void SG_ConvertXToDuration_AllPoints (GtkWidget * widget);
+void SG_ConvertYToData_SelectedPoints (GtkWidget * widget);
+void SG_MoveDataPoint (GtkWidget * widget, SG_DataPoint * curDP, double newx,
+                       double newy);
+void SG_MoveSelectedDataPoints (GtkWidget * widget, double moveX,
+                                double moveY);
+gboolean SG_SwapLinks_left (SG_DataPoint * curDP);      //swaps datapoint with its left neighbor
+gboolean SG_SwapLinks (SG_DataPoint * curDP1, SG_DataPoint * curDP2);   //swaps any two existing links
+gboolean SG_DialogNewVoice (GtkWidget * widget, SG_DataPoint * curDP);
+gboolean SG_DataPointPropertiesDialog (GtkWidget * widget,
+                                       SG_DataPoint * curDP);
+void SG_CleanupVoice (SG_Voice * curVoice);     // internal use only, merely frees memory; user should call SG_DeleteVoice()
+void SG_CleanupVoices (SG_Voice * FirstVoice);  //Remember to NULL stuff after you send it here!
+void SG_DeleteVoice (SG_Voice * curVoice);
+SG_Voice *SG_AddNewVoiceToEnd (int type, int ID);       //ID added and SG_Voice removed 20100625
+SG_Voice *SG_SelectVoice (SG_Voice * voice);
+
+void SG_DeleteDataPoint (SG_DataPoint * curDP, gboolean DeleteTime);
+void SG_DeleteDataPoints (GtkWidget * widget, gboolean DeleteTime,
+                          gboolean selected_only);
+void SG_DeleteDuplicateDataPoints (GtkWidget * widget);
+
+void SG_BackupDataPoints (GtkWidget * widget);  //user should call this before any action they want to be able to undo
+void SG_RestoreDataPoints (GtkWidget * widget, gboolean SG_MergeRestore);
+void SG_CopySelectedDataPoints (GtkWidget * widget);
+void SG_PasteSelectedDataPoints (GtkWidget * widget, gboolean predeselect);
+void SG_CopyDataPoints (GtkWidget * widget, SG_BackupData * backupdata,
+                        gboolean selected_only);
+void SG_PasteDataPoints (GtkWidget * widget, SG_BackupData * backupdata,
+                         gboolean predeselect);
+void SG_CleanupBackupData (SG_BackupData * Bdata);
+int SG_AllocateBackupData (SG_BackupData * Bdata, int TotalVoiceCount,
+                           int TotalDataPointCount);
+int SG_VoiceCount ();
+
+//char *SG_StringAllocateAndCopy (const char *tmpstr);    //just an easy way to copy a string; user still has to free result
+void SG_StringAllocateAndCopy (char **dest, const char *tmpstr);        //just an easy way to copy a string; if (*dest) != NULL, this free's it first
+gboolean SG_MessageBox (char *question);
+void SG_VoiceTestLegalSelection ();
+
+//Local Handlers (to be called from calling code):
+//gboolean SG_realize( GtkWidget *widget, GdkEventConfigure *event);
+//gboolean SG_expose_event( GtkWidget *widget, GdkEventExpose *event);
+//gboolean SG_delete_event(GtkWidget* window, GdkEvent* e, gpointer data);
+gboolean SG_button_release_event (GtkWidget * widget, GdkEventButton * event);
+gboolean SG_button_press_event (GtkWidget * widget, GdkEventButton * event);
+gboolean SG_configure_event (GtkWidget * widget, GdkEventConfigure * event);
+gboolean SG_motion_notify_event (GtkWidget * widget, GdkEventMotion * event);
+void SG_DrawCurrentPointInGraph (GtkWidget * widget);
+void SG_SelectDataPoints_All (gboolean select);
+void SG_SelectDataPoints_Voice (SG_Voice * curVoice, gboolean select);
+void SG_SelectDataPoints (int startX, int startY, int endX, int endY,
+                          gboolean select);
+void SG_SelectIntervalDataPoints_Voice (SG_Voice * curVoice, int interval,
+                                        gboolean select,
+                                        gboolean inverse_on_others);
+void SG_SelectIntervalDataPoints_All (int interval, gboolean select,
+                                      gboolean inverse_on_others);
+void SG_SelectInvertDataPoints_All ();
+void SG_SelectInvertDataPoints_Voice (SG_Voice * curVoice);
+void SG_SelectNeighboringDataPoints (gboolean next, gboolean deselect);
+void SG_AlignDataPoints (GtkWidget * widget);
+void SG_ScaleDataPoints_Time (GtkWidget * widget, double scalar);
+void SG_ScaleDataPoints_Y (GtkWidget * widget, double scalar);
+int SG_MagneticPointer (GtkWidget * widget, int x, int y);
+void SG_TestDataPointGraphLimits (GtkWidget * widget, SG_DataPoint * curDP);
+void SG_AddToDataPoints (GtkWidget * widget, double limit,
+                         gboolean x_flag, gboolean y_flag,
+                         gboolean rand_flag);
+void SG_DuplicateSelectedVoice ();
+void SG_ReverseVoice (GtkWidget * widget);
+void SG_CountAllData (int *voicecount_all, int *voicecount_selecteddp,
+                      int *dpcount_all, int *dpcount_selected);
+void SG_CountVoiceDPs (SG_Voice * curVoice, int *dpcount_all,
+                       int *dpcount_selected);
+gboolean SG_SwapLinks (SG_DataPoint * curDP1, SG_DataPoint * curDP2);
+void SG_SelectLastDP (SG_Voice * curVoice);
+void SG_SelectLastDP_All ();
+void SG_SelectFirstDP_All ();
+void SG_TruncateSchedule (GtkWidget * widget, double endtime);
+void SG_PasteDataPointsAtEnd (GtkWidget * widget);
+SG_DataPoint *SG_GetLeftmostSelectedDP ();
+void SG_InvertY (GtkWidget * widget);
+void SG_SelectDuration (GtkWidget * widget, double duration);
+void SG_SelectProximity_All (double threshold);
+void SG_SelectProximity_SingleDP (SG_DataPoint * innerDP, double threshold);
+void SG_RoundValues_All (GtkWidget * widget, double roundingval,
+                         int parameter);
+void SG_RoundValues_Voice (GtkWidget * widget, SG_Voice * curVoice,
+                           double roundingval, int parameter);
+void SG_FontSetup (GtkWidget * widget); //[20100405]
+#endif

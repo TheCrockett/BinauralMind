@@ -1,0 +1,1577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkAdjustment" id="adjustment_hscale_X">
+    <property name="lower">-1</property>
+    <property name="upper">1.01</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">0.10000000000000001</property>
+    <property name="page_size">0.01</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_vscale_Y">
+    <property name="lower">-1</property>
+    <property name="upper">1.01</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">0.10000000000000001</property>
+    <property name="page_size">0.01</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_hscaleBalance">
+    <property name="lower">-100</property>
+    <property name="upper">101</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <property name="page_size">1</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_hscaleVolume">
+    <property name="upper">101</property>
+    <property name="value">100</property>
+    <property name="step_increment">0.10000000000000001</property>
+    <property name="page_increment">10</property>
+    <property name="page_size">1</property>
+  </object>
+  <object class="GtkWindow" id="window_main">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">Gnaural Binaural Beat Sound Generator</property>
+    <signal name="destroy" handler="on_window_main_destroy" swapped="no"/>
+    <child>
+      <object class="GtkVBox" id="vbox1">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkMenuBar" id="menubar_main">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkMenuItem" id="menuitem_File">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_File</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menuitem1_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_new">
+                        <property name="label">gtk-new</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_new_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_open">
+                        <property name="label">gtk-open</property>
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Open a gnaural file</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_open_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_recent">
+                        <property name="visible">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="label" translatable="yes">Open Recent</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_OpenFromLibrary">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Open from an installed directory of preset files</property>
+                        <property name="label" translatable="yes">Open From Preset _Library</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_OpenFromLibrary_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_OpenMerge">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Open a gnaural file and add the contents to current data</property>
+                        <property name="label" translatable="yes">Open Mer_ge</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_OpenMerge_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_save">
+                        <property name="label">gtk-save</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_save_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_save_as">
+                        <property name="label">gtk-save-as</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_save_as_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_edit">
+                        <property name="label">gtk-edit</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_edit_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_revert">
+                        <property name="label">gtk-revert-to-saved</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_revert_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator1">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="export_audio_wav_file">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Create an audio file for CD or MP3 player</property>
+                        <property name="label" translatable="yes">Export _Audio To File</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_export_audio_to_file_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem1">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_RestoreDefaultFile">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">This will put a basic meditation file in Gnaural's home directory</property>
+                        <property name="label" translatable="yes">Restore _default file and settings</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_RestoreDefaultFile_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem2">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_quit">
+                        <property name="label">gtk-quit</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_quit_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem2">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Edit</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menuitem2_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_undo">
+                        <property name="label">_Undo    Ctrl+z</property>
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Reverts to previous state</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_menuitem_undo_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_redo">
+                        <property name="label">_Redo    Ctrl+y</property>
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Reverts to previous state</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_menuitem_redo_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="datapoints1">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_DataPoints</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="datapoints1_menu">
+                            <child>
+                              <object class="GtkImageMenuItem" id="EditDP_cut">
+                                <property name="label">Cu_t                Ctrl+x</property>
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Copies then deletes selected datapoints</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">False</property>
+                                <signal name="activate" handler="on_EditDP_cut_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImageMenuItem" id="EditDP_copy">
+                                <property name="label">_Copy              Ctrl+c</property>
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Copies selected datapoints</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">False</property>
+                                <signal name="activate" handler="on_EditDP_copy_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImageMenuItem" id="EditDP_paste">
+                                <property name="label">_Paste             Ctrl+v</property>
+                                <property name="visible">True</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">False</property>
+                                <signal name="activate" handler="on_EditDP_paste_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="EditDP_paste_at_end">
+                                <property name="visible">True</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">Pastes at the end of the schedule</property>
+                                <property name="label" translatable="yes">Paste at _End   Shift+V</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_EditDP_paste_at_end_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImageMenuItem" id="EditDP_delete">
+                                <property name="label">_Delete            delete</property>
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Deletes selected datapoints, adding their durations to left-neighbor</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">False</property>
+                                <signal name="activate" handler="on_EditDP_delete_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="EditDP_delete_time">
+                                <property name="visible">True</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">Deletes selected datapoints and also the durations they held</property>
+                                <property name="label" translatable="yes">Delete Ti_me  Shift+delete</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_EditDP_delete_time_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparatorMenuItem" id="separator2">
+                                <property name="visible">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkImageMenuItem" id="EditDP_clear">
+                                <property name="label">C_lear All</property>
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Clears all datapoints</property>
+                                <property name="use_underline">True</property>
+                                <property name="use_stock">False</property>
+                                <signal name="activate" handler="on_EditDP_clear_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="EditDP_properties">
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Dialog box to manually enter values for all selected datapoints</property>
+                                <property name="use_action_appearance">False</property>
+                                <property name="label" translatable="yes">_Properties</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_EditDP_properties_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="voices1">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Voice</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="voices1_menu">
+                            <child>
+                              <object class="GtkMenuItem" id="EditVoice_add">
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Adds a new voice</property>
+                                <property name="label" translatable="yes">_Add        Ctrl+j</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_EditVoice_add_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="EditVoice_delete">
+                                <property name="visible">True</property>
+                                <property name="tooltip_text" translatable="yes">Deletes currently selected voice</property>
+                                <property name="label" translatable="yes">_Delete    Ctrl+d</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_EditVoice_delete_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="EditVoice_properties">
+                                <property name="visible">True</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="label" translatable="yes">_Properties</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_EditVoice_properties_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator3">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_apply">
+                        <property name="label">_Apply     Ctrl+p</property>
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Applies current graph to sound engine</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="on_menuitem_apply_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separator4">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SetScheduleInfo">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Edit the overal schedule information</property>
+                        <property name="label" translatable="yes">Schedule Info</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SetScheduleInfo_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_DataPointSize">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">DataPoint Size</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_DataPointSize_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_preferences">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Font</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_preferences_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem_Select">
+                <property name="visible">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="tooltip_text" translatable="yes">Assorted algorithms for selecting datapoints</property>
+                <property name="label" translatable="yes">_Select</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu1">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectAll">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Select all visible datapoints in schedule</property>
+                        <property name="label" translatable="yes">_All                           Ctrl+a</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectAll_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_DeselectAll">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Deselect all visible datapoints in schedule</property>
+                        <property name="label" translatable="yes">_None                      Shift+A</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_DeselectAll_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectInvert">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Invert selection of all visible datapoints in schedule</property>
+                        <property name="label" translatable="yes">_Invert                      Ctrl+i</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectInvert_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectFirst">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Selects first datapoint in all visible voices</property>
+                        <property name="label" translatable="yes">_First                       Shift+U</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectFirst_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectLast">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Selects last datapoint in all visible voices</property>
+                        <property name="label" translatable="yes">_Last                        Ctrl+u</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectLast_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectInverval">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Selects visible DPs at given interval</property>
+                        <property name="label" translatable="yes">By In_terval              Ctrl+k</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectInterval_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectDuration">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Selects visible DPs above or below given duration</property>
+                        <property name="label" translatable="yes">By _Duration</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectDuration_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectNeighbor">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Select visible DPs adjacent to currently selected DPs</property>
+                        <property name="label" translatable="yes">By Nei_ghbor           Ctrl+m</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectNeighbor_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectProximity_all">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Selects all visible DPs with a given X,Y proximity to each other</property>
+                        <property name="label" translatable="yes">By _Proximity (All)</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectProximity_all_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectProximity_singlepoint">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Selects all DPs around a selected DP</property>
+                        <property name="label" translatable="yes">By Pro_ximity (single point)</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_SelectProximity_singlepoint_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_SelectVoice">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="label" translatable="yes">Voice Datapoint Selections</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu2">
+                            <property name="visible">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <child>
+                              <object class="GtkMenuItem" id="menuitem_SelectAllInVoice">
+                                <property name="visible">True</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">Select all datapoints in voice</property>
+                                <property name="label" translatable="yes">_All               Ctrl+e</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_menuitem_SelectAllInVoice_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="menuitem_DeselectAllInVoice">
+                                <property name="visible">True</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">Deselect all datapoints in voice</property>
+                                <property name="label" translatable="yes">_None          Shift+E</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_menuitem_DeselectAllInVoice_activate" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="menuitem_InvertSelectionInVoice">
+                                <property name="visible">True</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="tooltip_text" translatable="yes">Inverts the selection of datapoints in selected voice</property>
+                                <property name="label" translatable="yes">_Invert         Shift+I</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_menuitem_InvertSelectionInVoice_activate" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem3">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_View</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menuitem3_menu">
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_view_frequency">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Show base frequency along Y axis</property>
+                        <property name="label" translatable="yes">Frequency</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_view_frequency_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_view_stereo">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Show left-right stereo mix using Y axis</property>
+                        <property name="label" translatable="yes">Stereo</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_view_stereo_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_view_volume">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Show volume using Y axis</property>
+                        <property name="label" translatable="yes">Volume</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_view_volume_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_view_beat">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Show beat frequency using Y axis</property>
+                        <property name="label" translatable="yes">Beat</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_view_beat_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitemTools">
+                <property name="visible">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="tooltip_text" translatable="yes">Assorted tools for processing datapoints</property>
+                <property name="label" translatable="yes">_Tools</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu3">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_ScaleY">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Scale the Y values of selected DPs</property>
+                        <property name="label" translatable="yes">Scale Y                             Ctrl+g</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_ScaleY_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_DuplicateSelectedVoice">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Duplicates the selected voice</property>
+                        <property name="label" translatable="yes">Duplicate Selected Voice  Ctrl+b</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_DuplicateSelectedVoice_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_ReverseVoice">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Reverses x axis of selected voice</property>
+                        <property name="label" translatable="yes">Reverse Voice                   Ctrl+r</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_ReverseVoice_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_AlignDataPoints">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">For each voice, finds the first and last selected datapoints and aligns all other selected points between them</property>
+                        <property name="label" translatable="yes">Align DataPoints               Ctrl+l</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_AlignDataPoints_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_TruncateSchedule">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Truncates (or grows) all voices to a set time</property>
+                        <property name="label" translatable="yes">Truncate Schedule</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_TruncateSchedule_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_ScaleTime">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Scale the duration of selected DPs</property>
+                        <property name="label" translatable="yes">Scale Durations  </property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_ScaleTime_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_AddRandomToY">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Injects jitter on Y axis of selected data points</property>
+                        <property name="label" translatable="yes">Randomize Y</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_AddRandomToY_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_AddToY">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Adds to Y values of selected datapoints</property>
+                        <property name="label" translatable="yes">Add to Y</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_AddToY_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_AddRandomToX">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Injects jitter to durations of selected data points</property>
+                        <property name="label" translatable="yes">Randomize Durations</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_AddRandomToX_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_AddValueToDuration">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Adds to the durations of selected datapoints</property>
+                        <property name="label" translatable="yes">Add to Durations</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_AddToX_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_InvertY">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Inverts selected DPs in the graph</property>
+                        <property name="label" translatable="yes">Invert Y</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_InvertY_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_DuplicateAllVoices">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Duplicate entire schedule</property>
+                        <property name="label" translatable="yes">Duplicate All Voices</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_DuplicateAllVoices_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_RoundValues">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Rounds specified parameters</property>
+                        <property name="label" translatable="yes">Round Datapoints</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_RoundValues_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitemNetwork">
+                <property name="visible">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="tooltip_text" translatable="yes">Controls for Gnauralnet</property>
+                <property name="label" translatable="yes">_GnauralNet</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu4">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_GnauralNet_StartStop">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">You must start Gnauralnet in order to be in contact with another Gnaural</property>
+                        <property name="label" translatable="yes">_Start Gnauralnet</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_GnauralNet_StartStop_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_GnauralNet_JoinFriend">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="tooltip_text" translatable="yes">Enter the IP address and port of the remote Gnaural to contact</property>
+                        <property name="label" translatable="yes">_Connect To Another Gnaural</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_GnauralNet_JoinFriend_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_GnauralNet_PhaseInfo">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Use to sync Gnaural with an external stimulus</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="label" translatable="yes">Send phase _pulses to external app</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_GnauralNet_PhaseInfo_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menuitem_GnauralNet_ShowInfo">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Displays current connections info</property>
+                        <property name="label" translatable="yes">Show _Info</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_menuitem_GnauralNet_ShowInfo_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem4">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Help</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menuitem4_menu">
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_about">
+                        <property name="label">gtk-about</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_about_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_help">
+                        <property name="label">gtk-help</property>
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="on_menuitem_help_activate" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHBox" id="hbox3">
+            <property name="visible">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <child>
+              <object class="GtkFrame" id="frameStatus">
+                <property name="visible">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkVBox" id="vbox2">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <child>
+                      <object class="GtkLabel" id="labelStatus">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Status:</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="labelTotalRuntime">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Total Runtime:</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="labelCurrentRuntime">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Progress:</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox6">
+                        <property name="visible">True</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="label4">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">Times to Repeat (0 for infinite):</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="entryLoops">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="invisible_char">•</property>
+                            <signal name="activate" handler="on_entryLoops_activate" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label7">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">&lt;i&gt;Status:&lt;/i&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="padding">2</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFrame" id="frameFileInfo">
+                <property name="visible">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkVBox" id="vbox3">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <child>
+                      <object class="GtkLabel" id="labelFileName">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">File:</property>
+                        <property name="use_markup">True</property>
+                        <property name="selectable">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="labelFileTitle">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">Title:</property>
+                        <property name="use_markup">True</property>
+                        <property name="wrap">True</property>
+                        <property name="selectable">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="labelFileDescription">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">Description:</property>
+                        <property name="use_markup">True</property>
+                        <property name="wrap">True</property>
+                        <property name="selectable">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="labelFileAuthor">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">Author:</property>
+                        <property name="use_markup">True</property>
+                        <property name="selectable">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label6">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">&lt;i&gt;Schedule Info:&lt;/i&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="padding">2</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHBox" id="hbox4">
+            <property name="visible">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <child>
+              <object class="GtkFrame" id="frame1">
+                <property name="visible">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkHBox" id="hbox7">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <child>
+                      <object class="GtkVBox" id="vbox4">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <child>
+                          <object class="GtkFrame" id="frameVolume">
+                            <property name="visible">True</property>
+                            <property name="label_xalign">0</property>
+                            <property name="label_yalign">0</property>
+                            <property name="shadow_type">none</property>
+                            <child>
+                              <object class="GtkAlignment" id="alignment1">
+                                <property name="visible">True</property>
+                                <property name="left_padding">12</property>
+                                <child>
+                                  <object class="GtkHScale" id="hscaleVolume">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="adjustment">adjustment_hscaleVolume</property>
+                                    <property name="value_pos">bottom</property>
+                                    <signal name="value-changed" handler="on_hscaleVolume_value_changed" swapped="no"/>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child type="label">
+                              <object class="GtkLabel" id="labelVolume">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">&lt;small&gt;Volume&lt;/small&gt;</property>
+                                <property name="use_markup">True</property>
+                                <property name="justify">center</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkFrame" id="frame2">
+                            <property name="visible">True</property>
+                            <property name="label_xalign">0</property>
+                            <property name="label_yalign">0</property>
+                            <property name="shadow_type">none</property>
+                            <child>
+                              <object class="GtkAlignment" id="alignment2">
+                                <property name="visible">True</property>
+                                <property name="left_padding">12</property>
+                                <child>
+                                  <object class="GtkHScale" id="hscaleBalance">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="adjustment">adjustment_hscaleBalance</property>
+                                    <property name="digits">0</property>
+                                    <property name="value_pos">bottom</property>
+                                    <signal name="value-changed" handler="on_hscaleBalance_value_changed" swapped="no"/>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child type="label">
+                              <object class="GtkLabel" id="labelBalance">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">&lt;small&gt;Balance&lt;/small&gt;</property>
+                                <property name="use_markup">True</property>
+                                <property name="justify">center</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox11">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkProgressBar" id="progressbar_VolL">
+                            <property name="width_request">10</property>
+                            <property name="visible">True</property>
+                            <property name="orientation">bottom-to-top</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkProgressBar" id="progressbar_VolR">
+                            <property name="width_request">10</property>
+                            <property name="visible">True</property>
+                            <property name="orientation">bottom-to-top</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="fill">False</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkVBox" id="vbox6">
+                        <property name="visible">True</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkCheckButton" id="checkbuttonSwapStereo">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="on_checkbuttonSwapStereo_toggled" swapped="no"/>
+                            <child>
+                              <object class="GtkHBox" id="hbox2">
+                                <property name="visible">True</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <child>
+                                  <object class="GtkImage" id="image1">
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="stock">gtk-refresh</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="labelSwapStereo">
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="label" translatable="yes">Swap Stereo</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="checkbuttonOutputMono">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="on_checkbuttonOutputMono_toggled" swapped="no"/>
+                            <child>
+                              <object class="GtkHBox" id="hbox8">
+                                <property name="visible">True</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <child>
+                                  <object class="GtkImage" id="image10">
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="stock">gtk-justify-center</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="labelMonoOutput">
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="label" translatable="yes">Output Mono</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="pack_type">end</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label1">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">&lt;i&gt;Audio Output&lt;/i&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="padding">2</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFrame" id="frame4">
+                <property name="visible">True</property>
+                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkHBox" id="hbox9">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <child>
+                      <object class="GtkVScale" id="vscale_Y">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="adjustment">adjustment_vscale_Y</property>
+                        <property name="inverted">True</property>
+                        <property name="upper_stepper_sensitivity">off</property>
+                        <property name="digits">2</property>
+                        <property name="value_pos">right</property>
+                        <signal name="button-press-event" handler="on_vscale_Y_button_press_event" swapped="no"/>
+                        <signal name="value-changed" handler="on_vscale_Y_value_changed" swapped="no"/>
+                        <signal name="button-release-event" handler="on_vscale_Y_button_release_event" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkVBox" id="vbox5">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkHScale" id="hscale_X">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="adjustment">adjustment_hscale_X</property>
+                            <property name="digits">2</property>
+                            <signal name="button-press-event" handler="on_hscale_X_button_press_event" swapped="no"/>
+                            <signal name="value-changed" handler="on_hscale_X_value_changed" swapped="no"/>
+                            <signal name="button-release-event" handler="on_hscale_X_button_release_event" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="checkbutton_XYscale">
+                            <property name="label" translatable="yes">Scale</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="on_checkbutton_XYscale_toggled" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkVSeparator" id="vseparator1">
+                        <property name="visible">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="checkbutton1">
+                        <property name="label" translatable="yes">Magnetic Pointer</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="draw_indicator">True</property>
+                        <signal name="toggled" handler="on_checkbutton_MagneticPointer_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label2">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label" translatable="yes">&lt;i&gt;Move Selected DataPoints&lt;/i&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="padding">2</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkVPaned" id="vpanedListGraph">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkProgressBar" id="progressbar_main">
+            <property name="visible">True</property>
+            <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
+            <property name="pulse_step">0.10000000149</property>
+            <signal name="button-press-event" handler="on_progressbar_main_button_press_event" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHBox" id="hbox1">
+            <property name="visible">True</property>
+            <property name="spacing">8</property>
+            <property name="homogeneous">True</property>
+            <child>
+              <object class="GtkHBox" id="hbox10">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkButton" id="buttonPlay">
+                    <property name="label">gtk-media-play</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_buttonPlay_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="buttonRewind">
+                    <property name="label">gtk-media-rewind</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_buttonRewind_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="buttonForward">
+                    <property name="label">gtk-media-forward</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_buttonForward_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="buttonStop">
+                    <property name="label">gtk-media-stop</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_buttonStop_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFrame" id="frame3">
+                <property name="visible">True</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">none</property>
+                <child>
+                  <object class="GtkHBox" id="hbox5">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobuttonGraphView_BaseFreq">
+                        <property name="label" translatable="yes">Base Freq.</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="active">True</property>
+                        <property name="draw_indicator">True</property>
+                        <signal name="toggled" handler="on_radiobuttonGraphView_BaseFreq_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobuttonGraphView_BeatFreq">
+                        <property name="label" translatable="yes">Beat Freq.</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radiobuttonGraphView_BaseFreq</property>
+                        <signal name="toggled" handler="on_radiobuttonGraphView_BeatFreq_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobuttonGraphView_Volume">
+                        <property name="label" translatable="yes">Volume</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radiobuttonGraphView_BaseFreq</property>
+                        <signal name="toggled" handler="on_radiobuttonGraphView_Volume_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobuttonGraphView_Balance">
+                        <property name="label" translatable="yes">Stereo Bal.</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radiobuttonGraphView_BaseFreq</property>
+                        <signal name="toggled" handler="on_radiobuttonGraphView_Balance_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="labelGraphView">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">&lt;i&gt;Graph View:&lt;/i&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="fill">False</property>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStatusbar" id="statusbar_main">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

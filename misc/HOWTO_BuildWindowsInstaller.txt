@@ -1,0 +1,18 @@
+You've got your Win32 executable built via the wonderful line:
+./configure --host=i586-mingw32msvc --target=i586-mingw32msvc --build=`./config.guess` 
+But now you need to package it. What to do? Don't fret, really:
+
+- strip all new executables in src and src/dbus: 
+ i586-mingw32msvc-strip src/*.exe 
+ i586-mingw32msvc-strip src/net/*.exe
+ [NOTE: you could do this too:  i586-mingw32msvc-strip src/*.dll]
+- extract all DLLs from misc/gnaural_DLLs.tar.gz, move everything from the bin/ (don't worry about include/ or lib/, 
+  they are only for development) to gnaural's src/ directory (where gnaural.exe should already be too)
+- launch windows program "ISTool", either from your desktop (where it should be in Linux in a normal installation) or 
+  like this from the commande line:
+     wine /home/MyNetID/.wine/drive_c/Program\ Files/ISTool/ISTool.exe
+- edit the version here where this document is in misc, make all name instances reflect new version, add any new 
+  files to the [FILES] list
+- run "Compile" and you are done. Installer will be in misc/Output
+
+updated 20100416 [last: 200800819]

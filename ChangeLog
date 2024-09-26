@@ -1,0 +1,103 @@
+GENERAL NOTES:
+1) All dates here need to be kept in XXXX-YY-ZZ format so they dont' get changed in the mass sed version updates.
+2) Version updates are done with these two commands from the root gnaural directory (run ONLY after a virgin CVS download and a "grep -R 20110606 *" to verify no timestamped comments in the source code are affected):
+ for i in $(grep -Rl 20110606 *); do sed -i 's/20110606/NewVersionNumberHere/g' "$i"; done
+ ./autogen.sh --prefix=/configure
+3) My ~/.indent.pro file (used by indent program for my default code formatting):
+ -nbad -bap -bbb -bbo -bc -nbfda -bl -bli0 -bls -c0 -ncdb -nce -ci0 -cp1 -cs -di1 -fc1 -nfca -hnl -i1 -ip0 -lp -pcs -nprs -npsl -saf -sai -saw -nsc -sob --no-tabs 
+
+==========================================
+2011-02-15:
+- completely replaced the contributed code for "Isochronic Pulses"
+- added a new voice, "Alt Isochronic Pulses", that alternates the Isochronic pulses between left-right channels 
+
+2010-11-15:
+- added Recent Files 
+- updated drag'n'drop
+- added VU meter
+
+2010-10-06:
+-Dragging mouse with Magnetic Pointer selected will "Attract" selected data points on Y-axis to the pointer's position
+-There is now a "Graph View" entry in the schedule file so last view is remembered when reopening the file.
+-Windows version is now going to carry along it's own GTK DLLs like the Mac one does
+-Graph window is now a slidable pane (you can make window bigger or smaller without chaning size of Gnaural)
+-Changed (fixed?) Align Data Points to clearer use: now finds first and last selected datapoints in each voice and aligns all other selected datapoints in each voice between them in 
+
+2010-06-02: 
+(released as version 1.0.20100528)
+-Added both read and write OGG support (the opensource MP3 equivalent)
+-Added ability for Linux distros to provide library download, see:
+https://sourceforge.net/tracker/?func=detail&aid=3002560&group_id=149086&atid=773669
+-updated the libsnd library for Windows
+-Added Mono output button
+-Fixed the About link so it now opens browsers on most platforms
+-Cleaned up a lot of the audio format handling code
+
+2009-12-15:
+-bunch of gettextize stuff
+
+2009-08-08:
+-Changed portaudio buffer sizes so there is no more stuttering in Vista and it also happily compiles to Mac's tiny buffer size
+-Added "Isochronic Pulses" as a pure patch provided by a user, did no more tinkering to it as it a) worked and b) was remarkably uninvasive in the overall Gnaural concept (which is Binaural Beat).
+-Added a couple Tools menu items.
+-Fixed the Anjuta project file to work with newer Anjuta versions, even though i seem to be a die-hard Geany user now.
+-Came up with a link line to static-link enough unusual libs that i can run Gnaural as a standalone executable (with gnaural.glade, of course) on Puppy Linux. this is the line:
+gcc -g -O2  -Wl,-export-dynamic -o gnaural main.o BinauralBeat.o ScheduleGUI.o ScheduleXML.o support.o callbacks.o exportAudio.o voiceGUI.o playAudio.o gnauralnet_main.o gnauralnet_lists.o gnauralnet_clocksync.o gnauralnet_socket.o gnauralnet_running.o gnauralnet_gui.o /usr/lib/libgio-2.0.a /usr/lib/libportaudio.a /usr/lib/libjack.a -pthread -lglade-2.0 -lgtk-x11-2.0 -lxml2 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lpangocairo-1.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0 -lsndfile -lasound -lm -lpthread
+
+2008-08-08:
+-Apparently i skipped an entire year of updating here :) Fact is, 20080808  was the first real "version 1" release, and after a few tense of thousands of downloads still never got any bugs filed on it (even though i found a few - stuttering in Vista, mainly, platform requirements conflicts). So it was a good year, now on to 20090808 (above).
+
+2008-02-25b9:
+-Expected to be the last version using PortAudio v18; next will use PortAudio v19 to be MacOSX compatible.
+-To prepare for above, all PortAudio code was segreated in to a pair of playAudio.c/h files. 
+-Also, these files are now linked with the poraudio library (instead of literally making my own object files). 
+ FOR THE RECORD, I compiled the current Win32 version using the v18 snapshop, which had a couple 
+ minor errors in it -- specifically, mingw-gcc complained that two functions weren't declared "static."
+ Apparently, I don't need a DLL, I only need the libportaudio.a and portaudio.h files (the . I am going on-and
+ on here about it because it is very confusing having two portaudios (v18 and v19) that sometimes use the 
+ same named libs and sometimes don't.
+-Now user can click on the progress bar to move to that point in the schedule.
+-Added rule that any gnauralnet participant that does FF/RW/STOP/PAUSE/engine-reload gets seniority docked
+
+2008-02-25b8:
+-First version with elementary networking (e.g., "GnauralNet"). It doesn't look 
+ like much, perhaps, but inside is the groundwork for some pretty ambitious plans.
+ Currently, in theory, any number of Gnaurals can connect to each other; but for
+ now, they don't share schedules (or even particular check that different Gnaurals are
+ running the same schedule) -- but for people using the default internal one, it is an 
+ interesting way to, say, get 250 people exactly in the same wavelength (if you're 
+ trying for world peace or such). I've finally decided to release it as-is (even knowing 
+ there will be big changes soon) because the direction it goes depends on what people
+ actually want to use; and continuing to code without that sense is sure to be a waste.
+
+2007-07-07:
+- Lots of new tools, select options, edit functions. Basically, it is full-fledged now
+  20070b2B3 BUGFIXES:
+   -fixed the BB_SeedRand happening with same numbers every BB_InitVoices
+  20070b2B3 BUGFIXES:
+   -made engine more efficient
+   -implemented thread-safety booleans BB_PauseFlag and BB_InCriticalLoopFlag to avoid "data-nulled" segfaults 
+  20070b2B2 BUGFIXES:
+   -found a simple but bad bug in SG_ConvertYToData_SelectedPoints that was making balances below middle line diminish with changes in volume graph.
+   -discovered and fixed a massive memory leak in BB (wasn't cleaning voices before init'ing because voicecount was zero'd before cleaning)
+   -changed BB's find-current-datapoint routine to remember last known one (large DP counts would slow it down to a crawl). Unfortunately, this introduced a ton on new bugs, but was necessary
+  
+2007-06-20:
+- implemented Undo/Redo (only goes back one step)
+- implemented basic handling Voice Description strings
+
+TODO:
+- Algorithms under Tools/Select/Edit menu:
+  - [Tools] Scale schedule duration to an exact time
+  - [Tools] Y-axis "Smooth" selected DPs 
+  - [Tools] Invert Voice
+  - [Tools] Select by Duration
+  - [Edit] Paste to end
+  - [Select] All points below given duration
+- In opening files, don't let discrepancy between <totalentrycount> and real total entry count wreck the read (easy, just work to read twice)
+- In the main_VoicePropertiesDialog, give some info about the voice (number of DPs, etc.)
+- In "add random duration" it can only make schedules longer, because it doesn't subtract from point before; lousy feature, change
+- In "add random Y" it bottoms out on the bottom because it can't go below zero; might want to use some sort of algo
+
+~/.indent.pro:
+ -nbad -bap -bbb -bbo -bc -nbfda -bl -bli0 -bls -c0 -ncdb -nce -ci0 -cp1 -cs -di1 -fc1 -nfca -hnl -i1 -ip0 -lp -pcs -nprs -npsl -saf -sai -saw -nsc -sob --no-tabs 

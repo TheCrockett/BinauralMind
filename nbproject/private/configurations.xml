@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="debian">
+      </df>
+      <df name="m4">
+      </df>
+      <df name="misc">
+      </df>
+      <df name="pixmaps">
+      </df>
+      <df name="po">
+      </df>
+      <df name="src">
+        <df name=".deps">
+        </df>
+        <df name="net">
+          <df name=".deps">
+          </df>
+          <in>LandCaster.c</in>
+          <in>LandCaster.h</in>
+          <in>MakeLand.c</in>
+          <in>MakeLand.h</in>
+          <in>gnauralnet_client_example.c</in>
+          <in>gnauralnet_flasher.c</in>
+          <in>gnauralnet_flasher.h</in>
+          <in>gnauralscape.c</in>
+        </df>
+        <in>BinauralBeat.c</in>
+        <in>BinauralBeat.h</in>
+        <in>ScheduleGUI.c</in>
+        <in>ScheduleGUI.h</in>
+        <in>ScheduleXML.c</in>
+        <in>ScheduleXML.h</in>
+        <in>callbacks.c</in>
+        <in>callbacks.h</in>
+        <in>exportAudio.c</in>
+        <in>exportAudio.h</in>
+        <in>gettext.h</in>
+        <in>gnauralRecentMenu.c</in>
+        <in>gnauralRecentMenu.h</in>
+        <in>gnauralVU.c</in>
+        <in>gnauralVU.h</in>
+        <in>gnauralXML.c</in>
+        <in>gnauralXML.h</in>
+        <in>gnauralnet.h</in>
+        <in>gnauralnet_clocksync.c</in>
+        <in>gnauralnet_gui.c</in>
+        <in>gnauralnet_lists.c</in>
+        <in>gnauralnet_main.c</in>
+        <in>gnauralnet_running.c</in>
+        <in>gnauralnet_socket.c</in>
+        <in>main.c</in>
+        <in>main.h</in>
+        <in>main_ArrayConstants.h</in>
+        <in>playAudio.c</in>
+        <in>playAudio.h</in>
+        <in>voiceGUI.c</in>
+        <in>voiceGUI.h</in>
+      </df>
+      <in>config.h</in>
+    </df>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <rundir>.</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>

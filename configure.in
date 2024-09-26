@@ -1,0 +1,97 @@
+dnl Process this file with autoconf to produce a configure script.
+#NOTE: to cross-compile for Win32, be sure to set pkg-config to the right place:
+# export PKG_CONFIG_PATH=/usr/i586-mingw32msvc/lib/pkgconfig
+#then run 
+# ./configure --host=i586-mingw32msvc --target=i586-mingw32msvc --build=`./config.guess`
+#To properly prefix for Debian installation, run 
+# ./configure --prefix=/usr
+
+AC_INIT(configure.in, 1.0.20110606, http://gnaural.sourceforge.net/)
+AC_CANONICAL_SYSTEM
+AM_INIT_AUTOMAKE(gnaural, AC_PACKAGE_VERSION)
+AM_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
+AM_GNU_GETTEXT([external])
+
+AC_ISC_POSIX
+AC_PROG_CC
+AM_PROG_CC_STDC
+AC_HEADER_STDC
+AC_EXEEXT
+
+#Now do platform-specific stuff:
+#host values this has successfully compiled on so-far:
+# i386-apple-darwin9.5.0 [MacOSX 10.5.5]
+# i686-pc-linux-gnu      [Debian 2.6.26-12]
+# i586-pc-mingw32msvc    [Debian 2.6.26-12 MinGW cross-compile]
+# i686-pc-mingw32        [WinXP running MSYS with MinGW]
+case $host in
+ *-*-mingw32*) 
+   echo Compiling for Windows
+   # NOTE: if cross-compiling, do "export PKG_CONFIG_PATH=/usr/i586-mingw32msvc/lib/pkgconfig"
+   LIBS="${LIBS} -lwsock32 "
+   CFLAGS="${CFLAGS} -mms-bitfields -DGNAURAL_WIN32 "
+   LDFLAGS="${LDFLAGS} -Wl,--export-all-symbols -mwindows " 
+   ;;
+ *-*-linux*) 
+   echo Compiling for Linux
+   CFLAGS="${CFLAGS} "
+   LDFLAGS="${LDFLAGS} " 
+   ;;
+ i?86-apple-*) 
+   echo Compiling for MacOSX
+   CFLAGS="${CFLAGS} -DGNAURAL_MACOSX "
+   LDFLAGS="${LDFLAGS} " 
+   ;;
+ *) 
+   echo Compiling for unknown host!
+   CFLAGS="${CFLAGS} "
+   LDFLAGS="${LDFLAGS} " 
+   ;;
+esac
+
+#do pkgconfig stuff:
+pkg_modules="gtk+-2.0 >= 2.0.0 gthread-2.0 sndfile >= 1.0.2 portaudio-2.0 >= 19"
+PKG_CHECK_MODULES([PACKAGE], [$pkg_modules])
+AC_SUBST(PACKAGE_CFLAGS)
+AC_SUBST(PACKAGE_LIBS)
+echo "PKG_CONFIG_PATH="$PKG_CONFIG_PATH
+echo "PACKAGE_CFLAGS="$PACKAGE_CFLAGS
+echo "PACKAGE_LIBS="$PACKAGE_LIBS
+
+#START check linker for -export-dynamic (MacOS eschews it, but may change it's mind one day):
+	bak_ldflags=$LDFLAGS
+	AC_MSG_CHECKING(for the ld -export-dynamic flag)
+	LDFLAGS="${LDFLAGS} -Wl,-export-dynamic"
+	AC_TRY_LINK(, [int i;], found=yes, found=no)
+	AC_MSG_RESULT($found)
+	if test $found = no; then
+	   LDFLAGS=$bak_ldflags
+	fi
+#END check linker for -export-dynamic
+
+GETTEXT_PACKAGE=gnaural
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
+
+dnl Add the languages which your application supports here.
+ALL_LINGUAS=""
+AM_GLIB_GNU_GETTEXT
+
+dnl PACKAGE_DATA_DIR_USR_SHARE="${datadir}"
+dnl PACKAGE_DATA_DIR_USR_SHARE="${datarootdir}"
+dnl PACKAGE_DATA_DIR_USR_SHARE="${prefix}"
+dnl PACKAGE_DATA_DIR_USR_SHARE="/usr/share"
+dnl PACKAGE_DATA_DIR_USR_SHARE="${datadir}"
+dnl AC_DEFINE_UNQUOTED(PACKAGE_DATA_DIR_USR_SHARE, "${datadir}", PACKAGE_DATA_DIR_USR_SHARE)
+
+PACKAGE_DATA_DIR_USR_SHARE="/usr/share"
+AC_SUBST(PACKAGE_DATA_DIR_USR_SHARE)
+
+AC_OUTPUT([
+Makefile
+po/Makefile.in
+src/Makefile
+src/net/Makefile
+gnaural.desktop
+])

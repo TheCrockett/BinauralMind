@@ -1,0 +1,5 @@
+?package(gnaural):needs="X11" \
+        section="Apps/Sound"\
+        title="gnaural" \
+        command="/usr/bin/gnaural" \
+        icon="/usr/share/gnaural/pixmaps/gnaural-icon.xpm"
