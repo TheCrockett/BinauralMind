@@ -32,9 +32,9 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-unknown-linux-gnu
-host_triplet = x86_64-unknown-linux-gnu
-target_triplet = x86_64-unknown-linux-gnu
+build_triplet = aarch64-unknown-linux-gnu
+host_triplet = aarch64-unknown-linux-gnu
+target_triplet = aarch64-unknown-linux-gnu
 noinst_PROGRAMS = gnauralnet_client_example$(EXEEXT) \
 	gnauralnet_flasher$(EXEEXT) gnauralscape$(EXEEXT)
 subdir = src/net
@@ -86,11 +86,11 @@ DIST_SOURCES = $(gnauralnet_client_example_SOURCES) \
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/bbl2/src/gnaural/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/bbl2/src/gnaural/missing --run tar
-AUTOCONF = ${SHELL} /home/bbl2/src/gnaural/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/bbl2/src/gnaural/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/bbl2/src/gnaural/missing --run automake-1.11
+ACLOCAL = ${SHELL} /home/bcrockett/rse/open_source/BinauralMind/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/bcrockett/rse/open_source/BinauralMind/missing --run tar
+AUTOCONF = ${SHELL} /home/bcrockett/rse/open_source/BinauralMind/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/bcrockett/rse/open_source/BinauralMind/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/bcrockett/rse/open_source/BinauralMind/missing --run automake-1.11
 AWK = gawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -106,14 +106,14 @@ DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /bin/grep -E
+EGREP = /usr/bin/grep -E
 EXEEXT = 
 GETTEXT_MACRO_VERSION = 0.18
 GETTEXT_PACKAGE = gnaural
 GMOFILES = 
 GMSGFMT = /usr/bin/msgfmt
 GMSGFMT_015 = /usr/bin/msgfmt
-GREP = /bin/grep
+GREP = /usr/bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -131,8 +131,8 @@ LTLIBICONV = -liconv
 LTLIBINTL = 
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/bbl2/src/gnaural/missing --run makeinfo
-MKDIR_P = /bin/mkdir -p
+MAKEINFO = ${SHELL} /home/bcrockett/rse/open_source/BinauralMind/missing --run makeinfo
+MKDIR_P = /usr/bin/mkdir -p
 MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
 MSGFMT_015 = /usr/bin/msgfmt
@@ -141,9 +141,9 @@ MSGMERGE = /usr/bin/msgmerge
 OBJEXT = o
 PACKAGE = gnaural
 PACKAGE_BUGREPORT = http://gnaural.sourceforge.net/
-PACKAGE_CFLAGS = -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+PACKAGE_CFLAGS = -I/usr/include/gtk-2.0 -I/usr/lib64/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/cairo -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/opus -I/usr/include/blkid -I/usr/include/pixman-1 -I/usr/include/libxml2 -I/usr/include/libmount -I/usr/include/fribidi -I/usr/include/libpng16 -I/usr/include/sysprof-6 -pthread
 PACKAGE_DATA_DIR_USR_SHARE = /usr/share
-PACKAGE_LIBS = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lfontconfig -lfreetype -lgthread-2.0 -pthread -lglib-2.0 -lsndfile -lportaudio -lasound -lm -lpthread
+PACKAGE_LIBS = -lportaudio -lm -lpthread -lsndfile -lgthread-2.0 -pthread -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lharfbuzz -lfontconfig -lasound -lgdk_pixbuf-2.0 -lcairo -lfreetype -lpango-1.0 -lgobject-2.0 -lglib-2.0
 PACKAGE_NAME = configure.in
 PACKAGE_STRING = configure.in 1.0.20110606
 PACKAGE_TARNAME = configure-in
@@ -165,10 +165,10 @@ VERSION = 1.0.20110606
 XGETTEXT = /usr/bin/xgettext
 XGETTEXT_015 = /usr/bin/xgettext
 XGETTEXT_EXTRA_OPTIONS = 
-abs_builddir = /home/bbl2/src/gnaural/src/net
-abs_srcdir = /home/bbl2/src/gnaural/src/net
-abs_top_builddir = /home/bbl2/src/gnaural
-abs_top_srcdir = /home/bbl2/src/gnaural
+abs_builddir = /home/bcrockett/rse/open_source/BinauralMind/src/net
+abs_srcdir = /home/bcrockett/rse/open_source/BinauralMind/src/net
+abs_top_builddir = /home/bcrockett/rse/open_source/BinauralMind
+abs_top_srcdir = /home/bcrockett/rse/open_source/BinauralMind
 ac_ct_CC = /usr/bin/gcc
 am__include = include
 am__leading_dot = .
@@ -176,9 +176,9 @@ am__quote =
 am__tar = ${AMTAR} chof - "$$tardir"
 am__untar = ${AMTAR} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-unknown-linux-gnu
+build = aarch64-unknown-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = aarch64
 build_os = linux-gnu
 build_vendor = unknown
 builddir = .
@@ -187,21 +187,21 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-unknown-linux-gnu
+host = aarch64-unknown-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = aarch64
 host_os = linux-gnu
 host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/bbl2/src/gnaural/install-sh
+install_sh = ${SHELL} /home/bcrockett/rse/open_source/BinauralMind/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
 localstatedir = ${prefix}/var
 mandir = ${datarootdir}/man
-mkdir_p = /bin/mkdir -p
+mkdir_p = /usr/bin/mkdir -p
 oldincludedir = /usr/include
 pdfdir = ${docdir}
 prefix = /usr/local
@@ -211,9 +211,9 @@ sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
 sysconfdir = ${prefix}/etc
-target = x86_64-unknown-linux-gnu
+target = aarch64-unknown-linux-gnu
 target_alias = 
-target_cpu = x86_64
+target_cpu = aarch64
 target_os = linux-gnu
 target_vendor = unknown
 top_build_prefix = ../../
@@ -227,7 +227,7 @@ INCLUDES = \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-I$(top_srcdir)/src \
-	-pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+	-I/usr/include/gtk-2.0 -I/usr/lib64/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/cairo -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/opus -I/usr/include/blkid -I/usr/include/pixman-1 -I/usr/include/libxml2 -I/usr/include/libmount -I/usr/include/fribidi -I/usr/include/libpng16 -I/usr/include/sysprof-6 -pthread
 
 gnauralnet_client_example_SOURCES = gnauralnet_client_example.c \
 	../gnauralnet_clocksync.c \
@@ -235,7 +235,7 @@ gnauralnet_client_example_SOURCES = gnauralnet_client_example.c \
 	../gnauralnet_main.c \
 	../gnauralnet_socket.c 
 
-gnauralnet_client_example_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lfontconfig -lfreetype -lgthread-2.0 -pthread -lglib-2.0 -lsndfile -lportaudio -lasound -lm -lpthread $(INTLLIBS) 
+gnauralnet_client_example_LDADD = -lportaudio -lm -lpthread -lsndfile -lgthread-2.0 -pthread -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lharfbuzz -lfontconfig -lasound -lgdk_pixbuf-2.0 -lcairo -lfreetype -lpango-1.0 -lgobject-2.0 -lglib-2.0 $(INTLLIBS) 
 gnauralnet_client_example_LDFLAGS = `pkg-config --libs glib-2.0`
 gnauralnet_flasher_SOURCES = gnauralnet_flasher.c \
 	gnauralnet_flasher.h \
@@ -244,7 +244,7 @@ gnauralnet_flasher_SOURCES = gnauralnet_flasher.c \
 	../gnauralnet_main.c \
 	../gnauralnet_socket.c 
 
-gnauralnet_flasher_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lfontconfig -lfreetype -lgthread-2.0 -pthread -lglib-2.0 -lsndfile -lportaudio -lasound -lm -lpthread $(INTLLIBS) 
+gnauralnet_flasher_LDADD = -lportaudio -lm -lpthread -lsndfile -lgthread-2.0 -pthread -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lharfbuzz -lfontconfig -lasound -lgdk_pixbuf-2.0 -lcairo -lfreetype -lpango-1.0 -lgobject-2.0 -lglib-2.0 $(INTLLIBS) 
 gnauralnet_flasher_LDFLAGS = `pkg-config --libs glib-2.0`   -Wl,-export-dynamic 
 gnauralscape_SOURCES = gnauralscape.c \
 	MakeLand.c \
@@ -252,7 +252,7 @@ gnauralscape_SOURCES = gnauralscape.c \
 	LandCaster.c \
 	LandCaster.h 
 
-gnauralscape_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lfontconfig -lfreetype -lgthread-2.0 -pthread -lglib-2.0 -lsndfile -lportaudio -lasound -lm -lpthread $(INTLLIBS) 
+gnauralscape_LDADD = -lportaudio -lm -lpthread -lsndfile -lgthread-2.0 -pthread -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lharfbuzz -lfontconfig -lasound -lgdk_pixbuf-2.0 -lcairo -lfreetype -lpango-1.0 -lgobject-2.0 -lglib-2.0 $(INTLLIBS) 
 gnauralscape_LDFLAGS = `pkg-config --libs glib-2.0`   -Wl,-export-dynamic 
 all: all-am
 

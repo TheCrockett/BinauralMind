@@ -164,7 +164,7 @@ int BB_SetupVoice(int VoiceID, // Array index for a BB_Voice created by BB_InitV
         int mute, //TRUE or FALSE
         int mono, //TRUE or FALSE [added 20100614]
         int NumberOfEvents); //how many events in your array
-void (*BB_UserFunc) (int voice);
+extern void (*BB_UserFunc) (int voice);
 void BB_Water(int voice, short *array, int arraylen, float Lowcut);
 short *BB_WaterInit(int arraylen, float pitch);
 void BB_WaterVoiceInit(int voice);

@@ -230,7 +230,8 @@ void GN_Time_ProcessOutgoingData (GN_Friend * curFriend);
 void GN_ShowInfo ();
 
 //Global variables:
-unsigned short GN_ScheduleFingerprint;
+extern unsigned short GN_ScheduleFingerprint;  // Declare as extern
+//unsigned short GN_ScheduleFingerprint;
 typedef struct GN_Globals_type
 {
  int State;                     //DO NOT MOVE THIS; it gets initialized in gnauralnet_main
